@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Repositories\TicketRepository;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -10,56 +12,32 @@ class TicketController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
-    }
+        $tickets = TicketRepository::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('tickets.index', compact('tickets'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Ticket $ticket)
+    public function show($folio)
     {
-        //
-    }
+        $ticket = TicketRepository::find($folio);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Ticket $ticket)
-    {
-        //
-    }
+        $sales = TicketRepository::getSales($ticket);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Ticket $ticket)
-    {
-        //
+        return view('tickets.show', compact('sales', 'ticket'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ticket $ticket)
+    public function destroy($folio)
     {
-        //
+        TicketRepository::destroy($folio);
+
+        return to_route('ticket.index')->with('status', 'Ventas Eliminadas!');
     }
 }
