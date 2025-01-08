@@ -23,7 +23,9 @@ class SaveProductRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255', 'min:1'],
-            'price' => ['required', 'numeric', 'min:1']
+            'price' => ['required', 'numeric', 'min:1'],
+            'stock' => ['required', 'numeric', 'min:1'],
+            'image' => ['required', 'string', 'max:255', 'min:1']
         ];
     }
 }
