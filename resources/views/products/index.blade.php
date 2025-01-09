@@ -30,6 +30,9 @@
         .btn-danger {
             background-color: #dc3545;
         }
+        .btn-success {
+            background-color: #00a308;
+        }
         .btn:hover {
             opacity: 0.8;
         }
@@ -65,7 +68,7 @@
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->image }}</td>
                         <td>
-                            <a href="{{ route('product.show', $product->id) }}" class="btn">Ver</a>
+                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-success">Ver</a>
                         </td>
                         <td>
                             <a href="{{ url('product/' . $product->id . '/edit') }}" class="btn">Editar</a>
