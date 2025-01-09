@@ -40,14 +40,7 @@ class TicketController extends Controller
 
         return view('tickets.show', compact('sales', 'ticket'));
     }
-
-    public function search(Request $request){
-        $name = $request->query('name');
-        $products = TicketRepository::search($name);
-
-        return response()->json($products);
-    }
-
+    
     public function destroy($folio)
     {
         TicketRepository::destroy($folio);

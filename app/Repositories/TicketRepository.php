@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Product;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
 
@@ -17,19 +16,6 @@ class TicketRepository
     {
         return Ticket::where('folio', $folio)
             ->first();
-    }
-
-    public static function search($name)
-    {
-        return Product::where('name', 'like', "%$name%")
-            ->get([
-                'id',
-                'name',
-                'price',
-                'stock',
-                'image',
-                'updated_at'
-            ]);
     }
 
     public static function store($products)

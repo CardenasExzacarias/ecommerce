@@ -9,7 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('product/search', [TicketController::class, 'search'])
+Route::get('product/search', [ProductController::class, 'search'])
     ->name('product.search');
 
 Route::resource('product', ProductController::class);

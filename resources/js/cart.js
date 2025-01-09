@@ -1,9 +1,27 @@
 import axios from "axios";
-import { Component } from "./Component";
+import { Component, Struct } from "./Component";
 import { secure_url } from "./secure_url";
+import { ProductListItem } from "./components/products/ProductListItem";
+
+const cartData = [];
+
+export function updateCartData(product) {
+    const existingProduct = cartData.find(item => item.product === product);
+
+    if (existingProduct) {
+        existingProduct.quantity++;
+        return existingProduct;
+    } else {
+        cartData.push({ product: product, quantity: 1 });
+        return cartData[cartData.length - 1];
+    }
+}
 
 const search = document.getElementById('search');
 const products = document.getElementById('products');
+const cart = document.getElementById('cart');
+
+const cartList = new Struct();
 
 search.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -19,40 +37,23 @@ search.addEventListener('submit', (e) => {
 
     axios.get(url, { params: data })
         .then(res => {
-            products.innerHTML = '';
-            const component = new Component(products);
-
             const productElements = [];
 
             res.data.forEach(product => {
                 productElements.push(
-                    component.element(
-                        'div',
-                        { class: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' },
-                        component.element(
-                            'a',
-                            { href: secure_url(`product/${product.id}`) },
-                            component.element(
-                                'div',
-                                { class: 'bg-white p-4 border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300' },
-                                component.element(
-                                    'h2',
-                                    { class: 'text-xl font-semibold text-gray-800' },
-                                    product.name
-                                )
-                            )
-                        )
-                    )
+                    ProductListItem(product, cart, cartList)
                 );
             });
 
-            const elementComponent = component.element(
+            const component = new Struct();
+
+            const productList = Component(
                 'div',
                 { class: 'max-w-7xl mx-auto p-6' },
                 productElements
             );
 
-            component.addToStruct(elementComponent).render();
+            component.addToStruct(productList).render(products);
         })
         .catch(error => {
             console.error(error);
