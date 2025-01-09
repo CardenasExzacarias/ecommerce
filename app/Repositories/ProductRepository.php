@@ -20,4 +20,17 @@ class ProductRepository
 
         return 'Registro exitoso';
     }
+
+    public static function search($name)
+    {
+        return Product::where('name', 'like', "%$name%")
+            ->get([
+                'id',
+                'name',
+                'price',
+                'stock',
+                'image',
+                'updated_at'
+            ]);
+    }
 }

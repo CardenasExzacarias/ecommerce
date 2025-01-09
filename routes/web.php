@@ -9,6 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('product/search', [ProductController::class, 'search'])
+    ->name('product.search');
+
 Route::resource('product', ProductController::class);
 
 Route::resource('ticket', TicketController::class, [
@@ -18,7 +21,3 @@ Route::resource('ticket', TicketController::class, [
 ]);
 
 Route::resource('sale', SaleController::class);
-
-Route::post('hola/adiosmecaesmal', function () {
-    return 'Hola como estas';
-})->name('saludo');

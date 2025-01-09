@@ -18,6 +18,12 @@ class TicketRepository
             ->first();
     }
 
+    public static function store($products)
+    {
+        dd($products);
+        return 'hola';
+    }
+
     public static function getSales(Ticket $ticket)
     {
         $sales = DB::table('sales as s')
@@ -34,7 +40,8 @@ class TicketRepository
         return $sales;
     }
 
-    public static function destroy($folio){
+    public static function destroy($folio)
+    {
         $ticket = static::find($folio);
         $ticket->delete();
     }

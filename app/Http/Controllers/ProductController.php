@@ -43,7 +43,6 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         return view('products.show', compact('product'));
-
     }
 
     /**
@@ -63,7 +62,7 @@ class ProductController extends Controller
         $product->update($request->all());
 
         return redirect()->route('product.edit', $product->id)
-                         ->with('status', 'Producto actualizado correctamente');
+            ->with('status', 'Producto actualizado correctamente');
     }
 
     /**
@@ -77,4 +76,10 @@ class ProductController extends Controller
         ->with('status', 'Producto eliminado correctamente');
     }
 
+    public function search(Request $request){
+        $name = $request->query('name');
+        $products = ProductRepository::search($name);
+
+        return response()->json($products);
+    }
 }
