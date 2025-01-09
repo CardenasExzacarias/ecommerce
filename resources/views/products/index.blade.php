@@ -51,6 +51,7 @@
                     <th>Precio</th>
                     <th>Cantidad</th>
                     <th>Imagen</th>
+                    <th>Ver</th> <!-- Nueva columna para el enlace de "Ver" -->
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -63,10 +64,11 @@
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->image }}</td>
-                        {{-- <th><image src="https://picsum.photos/400/800">Imagen</image></th> --}}
+                        <td>
+                            <a href="{{ route('product.show', $product->id) }}" class="btn">Ver</a>
+                        </td>
                         <td>
                             <a href="{{ url('product/' . $product->id . '/edit') }}" class="btn">Editar</a>
-                            </a>
                         </td>
                         <td>
                             <form action="{{ route('product.destroy', $product->id) }}" method="POST">
@@ -74,7 +76,6 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
-                        </a>
                         </td>
                     </tr>
                 @endforeach
