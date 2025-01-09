@@ -1,6 +1,6 @@
-import { updateCartData } from "../../cart";
+import { updateCartData } from "../../tickets/create";
 import { Component } from "../../Component";
-import { secure_url } from "../../secure_url";
+import { secure_url } from "../../utilities/secure_url";
 
 export const ProductListItem = (product, cart, cartList) => {
     return Component(

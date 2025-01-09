@@ -1,9 +1,15 @@
 import axios from "axios";
-import { Component, Struct } from "./Component";
-import { secure_url } from "./secure_url";
-import { ProductListItem } from "./components/products/ProductListItem";
+import { Component, Struct } from "../Component";
+import { ProductListItem } from "../components/products/ProductListItem";
+import { getFormData } from "../utilities/getFormData";
+
+const search = document.getElementById('search');
+const products = document.getElementById('products');
+const cart = document.getElementById('cart');
+const store = document.getElementById('store');
 
 const cartData = [];
+const cartList = new Struct();
 
 export function updateCartData(product) {
     const existingProduct = cartData.find(item => item.product === product);
@@ -17,25 +23,12 @@ export function updateCartData(product) {
     }
 }
 
-const search = document.getElementById('search');
-const products = document.getElementById('products');
-const cart = document.getElementById('cart');
-
-const cartList = new Struct();
-
 search.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
+    const { url, values } = getFormData(e.target);
 
-    const data = {};
-    formData.forEach((value, key) => {
-        data[key] = value;
-    });
-
-    const url = e.target.action;
-
-    axios.get(url, { params: data })
+    axios.get(url, { params: values })
         .then(res => {
             const productElements = [];
 
@@ -58,4 +51,12 @@ search.addEventListener('submit', (e) => {
         .catch(error => {
             console.error(error);
         });
+});
+
+store.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const { url, method, values } = getFormData(e.target);
+
+
 });
