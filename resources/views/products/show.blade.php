@@ -11,7 +11,6 @@
     <img src="{{$product->image }}" alt="{{ $product->name }}">
     <p><strong>Precio: </strong> ${{ number_format($product->price, 2) }}</p>
     <p><strong>Cantidad: </strong> {{ $product->stock }}</p>
-    <p><strong>Descripción: </strong> {{ $product->description }}</p>
     <p><strong>Creado el: </strong> {{ $product->created_at->format('d/m/Y') }}</p>
 
     <a href="{{ route('product.index') }}" class="btn">Volver a la lista de productos</a>
