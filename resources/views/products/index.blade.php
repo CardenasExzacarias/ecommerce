@@ -39,6 +39,11 @@
     </style>
 </head>
 <body>
+    @if (session('status'))
+    <div class="status">
+        {{ session('status') }}
+    </div>
+@endif
     <button>
         <a href="{{ url('product/'.'create') }}" class="btn">Crear</a>
     </button>
