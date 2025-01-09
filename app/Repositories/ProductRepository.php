@@ -8,6 +8,11 @@ use Illuminate\Database\QueryException;
 
 class ProductRepository
 {
+    public static function all()
+    {
+        return Product::all();
+    }
+
     public static function store($fields)
     {
         try {
@@ -33,4 +38,9 @@ class ProductRepository
                 'updated_at'
             ]);
     }
+    public static function destroy(Product $product)
+    {
+        $product->delete();
+    }
+
 }

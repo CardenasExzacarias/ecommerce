@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = ProductRepository::all();
         return view('products.index', compact('products'));
     }
 
@@ -57,9 +57,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(SaveProductRequest $request, Product $product)
     {
-        $product->update($request->all());
+        $product->update($request->validated());
 
         return redirect()->route('product.edit', $product->id)
             ->with('status', 'Producto actualizado correctamente');
@@ -70,8 +70,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
-
+        ProductRepository::destroy($product);
         return redirect()->route('product.index')
         ->with('status', 'Producto eliminado correctamente');
     }
