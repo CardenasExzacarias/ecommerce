@@ -24,9 +24,10 @@ class TicketController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $status = TicketRepository::store($request->all());
 
-        dd($status);
+        return $status;
 
         // return to_route('product.create')
         //     ->with('status', $status);
@@ -40,7 +41,7 @@ class TicketController extends Controller
 
         return view('tickets.show', compact('sales', 'ticket'));
     }
-    
+
     public function destroy($folio)
     {
         TicketRepository::destroy($folio);

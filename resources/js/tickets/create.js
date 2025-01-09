@@ -6,7 +6,6 @@ import { getFormData } from "../utilities/getFormData";
 const search = document.getElementById('search');
 const products = document.getElementById('products');
 const cart = document.getElementById('cart');
-const store = document.getElementById('store');
 
 const cartData = [];
 const cartList = new Struct();
@@ -51,12 +50,4 @@ search.addEventListener('submit', (e) => {
         .catch(error => {
             console.error(error);
         });
-});
-
-store.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const { url, method, values } = getFormData(e.target);
-
-
 });

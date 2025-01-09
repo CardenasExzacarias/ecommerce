@@ -20,7 +20,6 @@ class TicketRepository
 
     public static function store($products)
     {
-        dd($products);
         return 'hola';
     }
 

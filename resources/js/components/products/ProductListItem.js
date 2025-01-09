@@ -59,7 +59,7 @@ export const ProductListItem = (product, cart, cartList) => {
                                         ),
                                         Component(
                                             'input',
-                                            { value: 1, type: 'text', id: `quantity:${product.name}` }
+                                            { value: 1, type: 'text', name: product.id, id: `quantity:${product.name}` }
                                         ),
                                         Component(
                                             'button',

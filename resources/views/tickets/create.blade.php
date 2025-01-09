@@ -8,9 +8,9 @@
 <div class="flex justify-between">
     <div id="products"></div>
     <div id="cart-container">
-        <div id='cart'></div>
         <form id="store" action="{{ route('ticket.store') }}" method="POST">
             @csrf
+            <div id='cart'></div>
             <button>Guardar Compra</button>
         </form>
     </div>
