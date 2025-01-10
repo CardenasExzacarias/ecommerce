@@ -10,6 +10,11 @@
 </head>
 <body class="p-8 bg-gray-100">
 
+    @if (session('status'))
+    <div class="status">
+        {{ session('status') }}
+        @endif
+    </div>
     <div class="p-6 bg-white rounded-lg shadow-md">
         <h2 class="mb-4 text-xl font-bold">Lista de productos</h2>
         <div class="flex justify-between items-center mb-4">
@@ -69,7 +74,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 </html>
