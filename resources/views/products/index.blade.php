@@ -5,92 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Productos</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        .btn {
-            display: inline-block;
-            padding: 6px 12px;
-            background-color: #007BFF;
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn-danger {
-            background-color: #dc3545;
-        }
-        .btn-success {
-            background-color: #00a308;
-        }
-        .btn:hover {
-            opacity: 0.8;
-        }
-    </style>
 </head>
-<body>
+<body class="p-8 bg-gray-100">
     @if (session('status'))
-    <div class="status">
-        {{ session('status') }}
-    </div>
-@endif
-    <button>
-        <a href="{{ url('product/'.'create') }}" class="btn">Crear</a>
-    </button>
+        <div class="p-4 mb-4 text-green-700 bg-green-100 rounded-md border border-green-400">
+            {{ session('status') }}
+        </div>
+    @endif
 
-    <h1>Lista de Productos</h1>
+    <div class="mb-6">
+        <a href="{{ url('product/'.'create') }}" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">
+            Crear Producto
+        </a>
+    </div>
+
+    <h1 class="mb-6 text-2xl font-bold">Lista de Productos</h1>
 
     @if($products->count() > 0)
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Imagen</th>
-                    <th>Ver</th> <!-- Nueva columna para el enlace de "Ver" -->
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($products as $product)
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white rounded-lg border border-gray-200 shadow-md">
+                <thead class="bg-gray-100">
                     <tr>
-                        <td>{{ $product->id }}</td>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->price }}</td>
-                        <td>{{ $product->stock }}</td>
-                        <td>{{ $product->image }}</td>
-                        <td>
-                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-success">Ver</a>
-                        </td>
-                        <td>
-                            <a href="{{ url('product/' . $product->id . '/edit') }}" class="btn">Editar</a>
-                        </td>
-                        <td>
-                            <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </td>
+                        <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">ID</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Nombre</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Precio</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Cantidad</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Imagen</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Ver</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Editar</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Eliminar</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach($products as $product)
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 text-sm text-gray-700 border-b">{{ $product->id }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-700 border-b">{{ $product->name }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-700 border-b">${{ $product->price }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-700 border-b">{{ $product->stock }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-700 border-b">{{ $product->image }}</td>
+                            <td class="px-6 py-4 border-b">
+                                <a href="{{ route('product.show', $product->id) }}" class="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-600">
+                                    Ver
+                                </a>
+                            </td>
+                            <td class="px-6 py-4 border-b">
+                                <a href="{{ url('product/' . $product->id . '/edit') }}" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">
+                                    Editar
+                                </a>
+                            </td>
+                            <td class="px-6 py-4 border-b">
+                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     @else
-        <p>No hay productos disponibles.</p>
+        <p class="mt-4 text-gray-600">No hay productos disponibles.</p>
     @endif
 </body>
 </html>

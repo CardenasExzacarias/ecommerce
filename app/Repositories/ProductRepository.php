@@ -10,7 +10,7 @@ class ProductRepository
 {
     public static function all()
     {
-        return Product::all();
+        return  Product::paginate(10);
     }
 
     public static function store($fields)
