@@ -11,7 +11,7 @@ class SaveTicketRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,16 @@ class SaveTicketRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $data = $this->all();
+
+        $rules = [];
+
+        unset($data['_token']);
+
+        foreach ($data as $key => $value) {
+            $rules[$key] = ['numeric', 'min:1', 'required'];
+        }
+
+        return $rules;
     }
 }
