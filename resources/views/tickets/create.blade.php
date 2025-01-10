@@ -1,5 +1,14 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+@if ($errors->any())
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
+
+
 <form id="search" action="{{ route('product.search') }}">
     @csrf
     <input name="name" id="name" type="text">

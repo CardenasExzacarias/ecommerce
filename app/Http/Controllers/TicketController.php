@@ -22,15 +22,12 @@ class TicketController extends Controller
         return view('tickets.create');
     }
 
-    public function store(Request $request)
+    public function store(SaveTicketRequest $request)
     {
-        dd($request->all());
-        $status = TicketRepository::store($request->all());
+        $status = TicketRepository::store($request->validated());
 
-        return $status;
-
-        // return to_route('product.create')
-        //     ->with('status', $status);
+        return to_route('ticket.index')
+            ->with('status', $status);
     }
 
     public function show($folio)

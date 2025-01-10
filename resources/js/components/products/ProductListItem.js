@@ -46,6 +46,7 @@ export const ProductListItem = (product, cart, cartList) => {
                                         Component(
                                             'button',
                                             {
+                                                type: 'button',
                                                 event: {
                                                     type: 'click',
                                                     handler: () => {
@@ -59,11 +60,12 @@ export const ProductListItem = (product, cart, cartList) => {
                                         ),
                                         Component(
                                             'input',
-                                            { value: 1, type: 'text', name: product.id, id: `quantity:${product.name}` }
+                                            { value: 1, type: 'text', name: product.name, id: `quantity:${product.name}` }
                                         ),
                                         Component(
                                             'button',
                                             {
+                                                type: 'button',
                                                 event: {
                                                     type: 'click',
                                                     handler: () => {

@@ -17,7 +17,7 @@ class TicketFactory extends Factory
     public function definition(): array
     {
         return [
-            'folio' => fake()->numberBetween(0, 99999999)
+            'folio' => fake()->numberBetween(100000000, 999999999)
         ];
     }
 }
