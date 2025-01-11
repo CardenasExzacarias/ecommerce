@@ -1,6 +1,7 @@
 import { updateCartData } from "../../tickets/create";
 import { Component } from "../../Component";
 import { secure_url } from "../../utilities/secure_url";
+import { CartItem } from "./CartItem";
 
 export const ProductListItem = (product, cart, cartList) => {
     return Component(
@@ -29,56 +30,12 @@ export const ProductListItem = (product, cart, cartList) => {
                             const productAdded = updateCartData(product.id);
 
                             if (productAdded.quantity != 1) {
-                                const productElement = cartList.struct.find(element =>
-                                    element.id == productAdded.product
-                                );
-
                                 const input = document.getElementById(`quantity:${product.name}`);
 
                                 let count = input.value;
                                 input.value = parseInt(count) + 1;
                             } else {
-                                cartList.addToStruct(Component(
-                                    'h1',
-                                    { id: product.id },
-                                    [
-                                        product.name,
-                                        Component(
-                                            'button',
-                                            {
-                                                type: 'button',
-                                                event: {
-                                                    type: 'click',
-                                                    handler: () => {
-                                                        const input = document.getElementById(`quantity:${product.name}`);
-                                                        let count = input.value;
-                                                        input.value = parseInt(count) + 1;
-                                                    }
-                                                }
-                                            },
-                                            '+'
-                                        ),
-                                        Component(
-                                            'input',
-                                            { value: 1, type: 'text', name: product.name, id: `quantity:${product.name}` }
-                                        ),
-                                        Component(
-                                            'button',
-                                            {
-                                                type: 'button',
-                                                event: {
-                                                    type: 'click',
-                                                    handler: () => {
-                                                        const input = document.getElementById(`quantity:${product.name}`);
-                                                        let count = input.value;
-                                                        input.value = parseInt(count) - 1;
-                                                    }
-                                                }
-                                            },
-                                            '-'
-                                        ),
-                                    ]
-                                )).render(cart);
+                                cartList.addToStruct(CartItem(product)).render(cart);
                             }
                         }
                     }
