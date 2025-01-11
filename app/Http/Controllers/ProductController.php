@@ -68,16 +68,18 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, Request $request)
     {
         ProductRepository::destroy($product);
-        return redirect()->route('product.index')
-        ->with('status', 'Producto eliminado correctamente');
+        $page = $request->input('page', 1);
+        return redirect()->route('product.index', ['page' => $page])
+                     ->with('status', 'Producto eliminado correctamente.');
     }
 
     public function search(Request $request){
         $name = $request->query('name');
         $products = ProductRepository::search($name);
+
 
         return response()->json($products);
     }

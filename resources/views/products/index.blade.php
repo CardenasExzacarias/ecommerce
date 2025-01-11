@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>Producto</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 <body class="p-8 bg-gray-100">
-
     @if (session('status'))
     <div class="status">
         {{ session('status') }}
@@ -36,6 +34,8 @@
                     <th class="px-4 py-2 text-center border border-gray-300">Nombre</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Precio</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Cantidad</th>
+                    <th class="px-4 py-2 text-center border border-gray-300">Imagen</th>
+                    <th class="px-4 py-2 text-center border border-gray-300">Ultima modificación</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Acciones</th>
                 </tr>
             </thead>
@@ -46,6 +46,10 @@
                         <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">{{ $product->name }}</td>
                         <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">${{ $product->price }}</td>
                         <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">{{ $product->stock }}</td>
+                        <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">
+                            <img src="{{ $product->image }}" alt="Imagen del producto" class="object-cover mx-auto w-16 h-16 rounded-md">
+                        </td>
+                        <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">{{ $product->updated_at }}</td>
                         <td class="px-6 py-4 text-center border-b">
                             <div class="flex justify-center space-x-2">
                                 <a href="{{ route('product.show', $product->id) }}" class="text-green-500 hover:text-green-700">
@@ -54,7 +58,7 @@
                                 <a href="{{ url('product/' . $product->id . '/edit') }}" class="text-blue-500 hover:text-blue-700">
                                     @svg('eva-edit', 'w-8 h-8 inline-block')
                                 </a>
-                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                <form action="{{ route('product.destroy', ['product' => $product->id, 'page' => $products->currentPage()]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:text-red-700">

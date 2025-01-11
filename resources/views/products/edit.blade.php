@@ -1,50 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Editar producto</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Editar Producto</title>
+    @vite(['resources/css/app.css', 'resources/js/products/statusTime.js'])
 </head>
+<body class="p-8 bg-gray-100">
+    <div class="p-6 bg-white rounded-lg shadow-md">
+        <h2 class="mb-6 text-xl font-bold text-gray-700">Editar Producto</h2>
 
-<body>
-    @if (session('status'))
-        <div class="status">
-            {{ session('status') }}
-        </div>
-    @endif
-    <form action="{{ route('product.update', $product->id) }}" method="POST">
-        @csrf
-        @method('PATCH')
+        <form action="{{ route('product.update',$product->id) }}" method="POST" class="space-y-4">
+            @csrf
+            @method('PATCH')
 
-        <input style="background-color: #e05" type="text" name="name" id="name"
-            value="{{ old('name', $product->name) }}" />
-        @error('name')
-            <li>{{ $message }}</li>
-        @enderror
+            <!-- Nombre del producto -->
+            <div>
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Nombre del Producto</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="{{ old('stock', $product->name) }}"
+                    required
+                    class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Escribe el nombre del producto"
+                />
+            </div>
 
-        <input style="background-color: #e50" type="number" name="price" id="price"
-            value="{{ old('price', $product->price) }}" />
-        @error('price')
-            <li>{{ $message }}</li>
-        @enderror
+            <div>
+                <label for="price" class="block mb-2 text-sm font-medium text-gray-700">Precio</label>
+                <input
+                    type="number"
+                    id="price"
+                    name="price"
+                    value="{{ old('stock', $product->price) }}"
+                    required
+                    min="0"
+                    step="0.01"
+                    class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Escribe el precio del producto"
+                />
+            </div>
 
-        <input style="background-color: #e75 " type="number" name="stock" id="stock"
-            value="{{ old('stock', $product->stock) }}" />
-        @error('stock')
-            <li>{{ $message }}</li>
-        @enderror
+            <div>
+                <label for="stock" class="block mb-2 text-sm font-medium text-gray-700">Cantidad en Stock</label>
+                <input
+                    type="number"
+                    id="stock"
+                    name="stock"
+                    value="{{ old('stock', $product->stock) }}"
+                    required
+                    min="0"
+                    class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Escribe la cantidad disponible"
+                />
+            </div>
 
-        <input style="background-color: #e90" type="text" name="image" id="image"
-            value="{{ old('image', $product->image) }}" />
-        @error('image')
-            <li>{{ $message }}</li>
-        @enderror
+            <div>
+                <label for="image" class="block mb-2 text-sm font-medium text-gray-700">Imagen del Producto</label>
+                <input
+                    type="text"
+                    id="image"
+                    name="image"
+                    value="{{ old('stock', $product->image) }}"
+                    class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                />
+            </div>
 
-        <input type="submit" value="Actualizar">
-    </form>
+            @if (session('status'))
+                <div
+                    id="statusMessage"
+                    class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg border border-green-300">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <!-- Botones -->
+            <div class="flex justify-end space-x-4">
+                <a href="{{ route('product.index') }}" class="px-4 py-2 font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">
+                    Cancelar
+                </a>
+                <button type="submit" class="px-4 py-2 font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600">
+                    Actualizar Producto
+                </button>
+            </div>
+        </form>
+    </div>
+
 </body>
-
 </html>
