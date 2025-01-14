@@ -12,9 +12,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = ProductRepository::all();
+        $name = $request->query('name'); // Obtener el término de búsqueda si existe
+        $products = ProductRepository::all($name); // Pasar el nombre de búsqueda a la consulta
+
         return view('products.index', compact('products'));
     }
 
@@ -65,9 +67,6 @@ class ProductController extends Controller
             ->with('status', 'Producto actualizado correctamente');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Product $product, Request $request)
     {
         ProductRepository::destroy($product);
@@ -76,11 +75,17 @@ class ProductController extends Controller
                      ->with('status', 'Producto eliminado correctamente.');
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $name = $request->query('name');
         $products = ProductRepository::search($name);
 
+        if ($request->query('index') == 'true') {
+            return view('products.index', compact('products'));
+        }
 
         return response()->json($products);
     }
+
+
 }

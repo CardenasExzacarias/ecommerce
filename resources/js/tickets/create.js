@@ -30,8 +30,7 @@ search.addEventListener('submit', (e) => {
     axios.get(url, { params: values })
         .then(res => {
             const productElements = [];
-
-            res.data.forEach(product => {
+            res.data.data.forEach(product => {
                 productElements.push(
                     ProductListItem(product, cart, cartList)
                 );

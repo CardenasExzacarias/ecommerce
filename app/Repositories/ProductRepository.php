@@ -8,10 +8,17 @@ use Illuminate\Database\QueryException;
 
 class ProductRepository
 {
-    public static function all()
+    public static function all($name = null)
     {
-        return  Product::paginate(10);
+        $query = Product::query();
+
+        if ($name) {
+            $query->where('name', 'like', "%$name%");
+        }
+
+        return $query->paginate(10);
     }
+
 
     public static function store($fields)
     {
@@ -29,7 +36,7 @@ class ProductRepository
     public static function search($name)
     {
         return Product::where('name', 'like', "%$name%")
-            ->get([
+            ->paginate(10, [
                 'id',
                 'name',
                 'price',
@@ -42,5 +49,4 @@ class ProductRepository
     {
         $product->delete();
     }
-
 }
