@@ -1,6 +1,6 @@
 import { Svg } from "../../Component";
 
-export const MinusCircleOutline = (width = 30, height = 30) => {
+export const PlusCircleOutline = (width = 30, height = 30) => {
     return Svg(
         'svg',
         {
@@ -12,7 +12,7 @@ export const MinusCircleOutline = (width = 30, height = 30) => {
         Svg(
             'g',
             {
-                "data-name": 'minus-circle'
+                "data-name": 'plus-circle'
             }, [
             Svg(
                 'path',
@@ -23,9 +23,9 @@ export const MinusCircleOutline = (width = 30, height = 30) => {
             Svg(
                 'path',
                 {
-                    d: 'M15 11H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z'
-                },
-            )
+                    d: 'M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z'
+                }
+            ),
         ])
     );
-};
+}

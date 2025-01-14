@@ -25,7 +25,7 @@
                         <div class="overflow-y-scroll" id='cart'></div>
                         <div class="absolute bottom-0 w-full" id="store_container_submit">
                             <div class="flex justify-center w-full">
-                                <button class="bg-primary text-white p-2 my-4" id="store_submit">
+                                <button class="bg-primary text-white p-2 my-4 rounded" id="store_submit">
                                     Guardar Compra
                                 </button>
                             </div>
