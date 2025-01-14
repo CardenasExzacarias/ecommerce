@@ -55,11 +55,11 @@
                             <img src="{{ $product->image }}" alt="Imagen del producto"
                                 class="object-cover mx-auto w-16 h-16 rounded-md">
                         </td>
-                        <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">{{ $product->id }}</td>
-                        <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">{{ $product->name }}</td>
-                        <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">${{ $product->price }}</td>
-                        <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">{{ $product->stock }}</td>
-                        <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">{{ $product->updated_at }}</td>
+                        <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->id }}</td>
+                        <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->name }}</td>
+                        <td class="px-6 py-4 text-center text-gray-700 border-b">${{ $product->price }}</td>
+                        <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->stock }}</td>
+                        <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->updated_at }}</td>
                         <td class="px-6 py-4 text-center border-b">
                             <div class="flex justify-center space-x-2">
                                 <a href="{{ route('product.show', $product->id) }}"
@@ -90,9 +90,10 @@
             <p class="text-gray-600">Mostrando {{ $products->firstItem() }} a {{ $products->lastItem() }} de
                 {{ $products->total() }} productos</p>
             <div class="flex items-center space-x-1">
-                {{ $products->appends(['name' => request()->query('name')])->links() }}
+                {{ $products->appends(['name' => request()->query('name')])->onEachSide(1)->links() }}
             </div>
         </div>
+
 
     </div>
 </body>
