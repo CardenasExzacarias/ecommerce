@@ -42,6 +42,7 @@ class ProductRepository
                 'price',
                 'stock',
                 'image',
+                'description',
                 'updated_at'
             ]);
     }

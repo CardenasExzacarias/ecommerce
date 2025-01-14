@@ -28,7 +28,8 @@ export const CartItem = (product) => {
                             { class: 'font-semibold' },
                             product.name
                         ),
-                        Component('p', {class: 'py-2'}, `$${product.price}`)
+                        Component('p', { class: 'py-2' }, `$${product.price}`),
+                        Component('p', { class: 'py-2' }, `${product.description}`)
                     ]),
                     Component(
                         'div', { class: 'flex items-center space-x-4' },
