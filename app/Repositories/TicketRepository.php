@@ -49,30 +49,44 @@ class TicketRepository
             ->get([
                 'id',
                 'sell_price',
+                'buy_cost',
                 'name'
-            ])->toArray();
+            ]);
 
         foreach ($products as $name => $count) {
-            $productData = array_values(array_filter(
-                $productsData,
-                function ($data) use ($name) {
-                    return $data->name === $name;
-                }
-            ));
+            $productData = $productsData->filter(function($product) use($name){
+                return $product->name === $name;
+            })->values();
 
-            if (!empty($productData)) {
-                $productData = $productData[0];
-            }
-
-            $sales[] = [
-                'sell_price' => $productData->sell_price,
-                'quantity' => $count,
-                'product_id' => $productData->id,
-                'ticket_id' => $ticket->id
-            ];
+            dd($productData);
         }
 
-        Sale::insert($sales);
+        //$productsData = $productsModel->toArray();
+
+        // dd($productsData, $productsModel);
+
+        // foreach ($products as $name => $count) {
+        //     $productData = array_values(array_filter(
+        //         $productsData,
+        //         function ($data) use ($name) {
+        //             return $data->name === $name;
+        //         }
+        //     ));
+
+        //     if (!empty($productData)) {
+        //         $productData = $productData[0];
+        //     }
+
+        //     $sales[] = [
+        //         'sell_price' => $productData->sell_price,
+        //         'buy_cost' => $productData->buy_cost,
+        //         'quantity' => $count,
+        //         'product_id' => $productData->id,
+        //         'ticket_id' => $ticket->id
+        //     ];
+        // }
+
+        // Sale::insert($sales);
 
         return 'Venta realizada con éxito';
     }
@@ -85,7 +99,7 @@ class TicketRepository
             ->get([
                 'name',
                 'quantity',
-                'sell_price',
+                's.sell_price',
                 's.id as sale',
                 'p.id as product',
             ]);
