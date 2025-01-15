@@ -49,9 +49,23 @@
                     required
                     min="0"
                     class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Escribe la cantidad disponible"
+                    placeholder="Escribe la cantidad de unidades disponibles del producto"
                 />
             </div>
+
+            <div>
+                <label for="description" class="block mb-2 text-sm font-medium text-gray-700">Descripción</label>
+                <input
+                    type="text"
+                    id="description"
+                    name="description"
+                    required
+                    min="0"
+                    class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Escribe la descripción del producto"
+                />
+            </div>
+
 
             <div>
                 <label for="image" class="block mb-2 text-sm font-medium text-gray-700">Imagen del Producto</label>

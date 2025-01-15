@@ -22,7 +22,7 @@
             <strong>Disponibles:</strong> {{ $product->stock }}
             </p>
             <p class="mb-6 text-sm text-gray-700">
-                <strong>Descripción: </strong> Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.
+                <strong>Descripción: </strong> {{ $product->description }}
             </p>
             <p class="mb-6 text-sm text-gray-600">
                 <strong> Ultima modificación:</strong> {{ $product->updated_at }}
