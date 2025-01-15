@@ -16,8 +16,9 @@
         </div>
 
         <div class="flex flex-col justify-center items-center p-6 w-2/3 text-center">
-            <h2 class="mb-2 text-3xl font-bold text-gray-800">${{ number_format($product->sell_price, 2) }}</h2>
-            <p class="mb-4 text-lg font-semibold text-gray-700">{{ $product->name }}</p>
+            <h2 class="mb-2 text-3xl font-bold text-gray-800">{{ $product->name }}</h2>
+            <p class="mb-4 text-lg font-semibold text-gray-700"><strong>Precio de venta: </strong>${{ number_format($product->sell_price, 2) }}</p>
+            <p class="mb-4 text-lg font-semibold text-gray-700"><strong>Precio de compra: </strong>${{ number_format($product->buy_cost, 2) }}</p>
             <p class="mb-2 text-sm text-gray-600">
             <strong>Disponibles:</strong> {{ $product->stock }}
             </p>

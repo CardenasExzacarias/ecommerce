@@ -41,7 +41,8 @@
                 <tr>
                     <th class="px-4 py-2 text-center border border-gray-300">Codigo de barras</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Nombre</th>
-                    <th class="px-4 py-2 text-center border border-gray-300">Precio</th>
+                    <th class="px-4 py-2 text-center border border-gray-300">Precio de compra</th>
+                    <th class="px-4 py-2 text-center border border-gray-300">Precio de venta</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Cantidad</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Ultima modificación</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Acciones</th>
@@ -52,6 +53,7 @@
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->barcode }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->name }}</td>
+                        <td class="px-6 py-4 text-center text-gray-700 border-b">${{ $product->buy_cost }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">${{ $product->sell_price }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->stock }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->updated_at }}</td>

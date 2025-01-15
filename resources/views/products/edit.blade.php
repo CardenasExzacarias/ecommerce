@@ -28,12 +28,27 @@
             </div>
 
             <div>
-                <label for="sell_price" class="block mb-2 text-sm font-medium text-gray-700">Precio</label>
+                <label for="sell_price" class="block mb-2 text-sm font-medium text-gray-700">Precio de venta</label>
                 <input
                     type="number"
                     id="sell_price"
                     name="sell_price"
                     value="{{ old('sell_price', $product->sell_price) }}"
+                    required
+                    min="0"
+                    step="0.01"
+                    class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Escribe el precio del producto"
+                />
+            </div>
+
+            <div>
+                <label for="buy_cost" class="block mb-2 text-sm font-medium text-gray-700">Precio de compra</label>
+                <input
+                    type="number"
+                    id="buy_cost"
+                    name="buy_cost"
+                    value="{{ old('buy_cost', $product->buy_cost) }}"
                     required
                     min="0"
                     step="0.01"
