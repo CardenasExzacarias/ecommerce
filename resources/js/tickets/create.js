@@ -42,12 +42,16 @@ search.addEventListener('submit', (e) => {
                 );
             });
 
+            productElements.push(Component('div', {},
+                Component('button', {}, 'Siguiente')
+            ))
+
             const component = new Struct();
 
             const productList = Component(
                 'div',
-                { class: 'p-6 bg-white rounded-lg shadow-md' },
-                productElements
+                {},
+                productElements,
             );
 
             component.addToStruct(productList).render(products);

@@ -52,7 +52,7 @@
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->barcode }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->name }}</td>
-                        <td class="px-6 py-4 text-center text-gray-700 border-b">${{ $product->price }}</td>
+                        <td class="px-6 py-4 text-center text-gray-700 border-b">${{ $product->sell_price }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->stock }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->updated_at }}</td>
                         <td class="px-6 py-4 text-center border-b">

@@ -7,57 +7,47 @@ export const CartItem = (product) => {
     return Component(
         'div',
         {
-            class: 'grid grid-cols-2 gap-4 m-6',
+            class: 'flex justify-between items-center m-4',
             id: product.id
         },
         [
             Component(
-                'div', { class: 'col' },
-                Component('img', {
-                    class: 'w-full h-80 rounded-md',
-                    alt: "Imagen del producto",
-                    src: product.image
-                })
+                'div', { class: 'flex items-center' },
+                [
+                    Component('p', { class: 'font-semibold' }, product.barcode),
+                    Component(
+                        'p',
+                        { class: 'mx-4' },
+                        product.name
+                    ),
+                    Component('p', { }, `$${product.sell_price}`),
+                ]
             ),
             Component(
-                'div', { class: 'col flex flex-col justify-between' },
+                'div', { class: "flex items-center" },
                 [
-                    Component('div', {}, [
-                        Component(
-                            'p',
-                            { class: 'font-semibold' },
-                            product.name
-                        ),
-                        Component('p', { class: 'py-2' }, `$${product.price}`),
-                        Component('p', { class: 'py-2' }, `${product.description}`)
-                    ]),
+                    ButtonListItem(() => {
+                        const input = document.getElementById(`quantity:${product.name}`);
+                        let count = input.value;
+                        input.value = parseInt(count) - 1;
+                    }, MinusCircleOutline()),
                     Component(
-                        'div', { class: 'flex items-center space-x-4' },
-                        [
-                            ButtonListItem(() => {
-                                const input = document.getElementById(`quantity:${product.name}`);
-                                let count = input.value;
-                                input.value = parseInt(count) + 1;
-                            }, PlusCircleOutline()),
-                            Component(
-                                'input',
-                                {
-                                    class: 'px-4 py-2 sm:w-1/4 md:w-1/3 lg:w-1/6 rounded-md border border-gray-300',
-                                    value: 1,
-                                    type: 'text',
-                                    name: product.name,
-                                    id: `quantity:${product.name}`
-                                }
-                            ),
-                            ButtonListItem(() => {
-                                const input = document.getElementById(`quantity:${product.name}`);
-                                let count = input.value;
-                                input.value = parseInt(count) - 1;
-                            }, MinusCircleOutline()),
-                        ]
+                        'input',
+                        {
+                            class: 'px-4 mx-1 py-2 w-16 rounded-md text-center focus:outline-none',
+                            value: 1,
+                            type: 'text',
+                            name: product.name,
+                            id: `quantity:${product.name}`
+                        }
                     ),
+                    ButtonListItem(() => {
+                        const input = document.getElementById(`quantity:${product.name}`);
+                        let count = input.value;
+                        input.value = parseInt(count) + 1;
+                    }, PlusCircleOutline()),
                 ]
-            )
+            ),
         ]
     );
 };

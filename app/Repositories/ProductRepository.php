@@ -39,10 +39,11 @@ class ProductRepository
             ->paginate(10, [
                 'id',
                 'name',
-                'price',
+                'sell_price',
                 'stock',
                 'image',
                 'description',
+                'barcode',
                 'updated_at'
             ]);
     }

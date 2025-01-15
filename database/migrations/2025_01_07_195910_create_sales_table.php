@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->integer('sell_price');
+            $table->integer('buy_cost');
             $table->integer('quantity');
             $table->foreignIdFor(Product::class);
             $table->foreignIdFor(Ticket::class);

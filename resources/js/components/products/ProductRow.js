@@ -7,7 +7,7 @@ export function ProductRow(product){
         [
             ProductRowField(product.id),
             ProductRowField(product.name),
-            ProductRowField(product.price),
+            ProductRowField(product.sell_price),
             ProductRowField(product.stock),
             ProductRowAction('')
         ]

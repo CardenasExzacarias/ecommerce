@@ -48,7 +48,7 @@ class TicketRepository
             })
             ->get([
                 'id',
-                'price',
+                'sell_price',
                 'name'
             ])->toArray();
 
@@ -65,7 +65,7 @@ class TicketRepository
             }
 
             $sales[] = [
-                'sell_price' => $productData->price,
+                'sell_price' => $productData->sell_price,
                 'quantity' => $count,
                 'product_id' => $productData->id,
                 'ticket_id' => $ticket->id

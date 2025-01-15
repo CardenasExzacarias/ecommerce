@@ -18,8 +18,13 @@ class SaleFactory extends Factory
      */
     public function definition(): array
     {
+        $sell_price = fake()->numberBetween(500, 1000);
+
+        $buy_cost  = fake()->numberBetween(500, $sell_price);
+
         return [
-            'sell_price' => fake()->numberBetween(1, 10000),
+            'sell_price' => $sell_price,
+            'buy_cost' => $buy_cost,
             'quantity' => fake()->numberBetween(1, 5),
             'product_id' => Product::factory(),
             'ticket_id' => Ticket::factory(),

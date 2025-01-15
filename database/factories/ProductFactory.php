@@ -905,12 +905,18 @@ class ProductFactory extends Factory
 
         $product = $products[fake()->numberBetween(0, count($products) - 1)];
 
+        $sell_price = fake()->numberBetween(500, 1000);
+
+        $buy_cost  = fake()->numberBetween(500, $sell_price);
+
         return [
             'name' => $product['name'],
-            'price' => fake()->numberBetween(500, 1000),
+            'sell_price' => $sell_price,
+            'buy_cost' => $buy_cost,
             'stock' => fake()->numberBetween(500, 1000),
             'image' => 'https://picsum.photos/400/800',
-            'description' => $product['description']
+            'description' => $product['description'],
+            'barcode' => fake()->numberBetween(1000000000000, 9999999999999),
         ];
     }
 }

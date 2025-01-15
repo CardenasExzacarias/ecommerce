@@ -28,12 +28,12 @@
             </div>
 
             <div>
-                <label for="price" class="block mb-2 text-sm font-medium text-gray-700">Precio</label>
+                <label for="sell_price" class="block mb-2 text-sm font-medium text-gray-700">Precio</label>
                 <input
                     type="number"
-                    id="price"
-                    name="price"
-                    value="{{ old('price', $product->price) }}"
+                    id="sell_price"
+                    name="sell_price"
+                    value="{{ old('sell_price', $product->sell_price) }}"
                     required
                     min="0"
                     step="0.01"
