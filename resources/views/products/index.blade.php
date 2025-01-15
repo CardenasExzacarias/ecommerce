@@ -39,7 +39,6 @@
         <table class="w-full border border-gray-300 border-collapse table-auto">
             <thead class="text-gray-700 bg-orange-100">
                 <tr>
-                    <th class="px-4 py-2 text-center border border-gray-300">Imagen</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Codigo de barras</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Nombre</th>
                     <th class="px-4 py-2 text-center border border-gray-300">Precio</th>
@@ -51,11 +50,7 @@
             <tbody>
                 @foreach ($products as $product)
                     <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-4 text-sm text-center text-gray-700 border-b">
-                            <img src="{{ $product->image }}" alt="Imagen del producto"
-                                class="object-cover mx-auto w-16 h-16 rounded-md">
-                        </td>
-                        <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->id }}</td>
+                        <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->barcode }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->name }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">${{ $product->price }}</td>
                         <td class="px-6 py-4 text-center text-gray-700 border-b">{{ $product->stock }}</td>

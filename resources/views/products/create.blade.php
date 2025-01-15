@@ -13,7 +13,6 @@
         <form action="{{ route('product.store') }}" method="POST" class="space-y-4">
             @csrf
 
-            <!-- Nombre del producto -->
             <div>
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Nombre del Producto</label>
                 <input
@@ -85,7 +84,6 @@
                 </div>
             @endif
 
-            <!-- Botones -->
             <div class="flex justify-end space-x-4">
                 <a href="{{ route('product.index') }}" class="px-4 py-2 font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">
                     Cancelar
