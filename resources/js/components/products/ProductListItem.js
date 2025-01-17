@@ -44,7 +44,7 @@ export const ProductListItem = (product, cart, cartList) => {
                                         const productAdded = updateCartData(product.id);
 
                                         if (productAdded.quantity != 1) {
-                                            const input = document.getElementById(`quantity:${product.name}`);
+                                            const input = document.getElementById(`q:${product.barcode}`);
 
                                             let count = input.value;
                                             input.value = parseInt(count) + 1;

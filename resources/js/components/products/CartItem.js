@@ -7,27 +7,33 @@ export const CartItem = (product) => {
     return Component(
         'div',
         {
-            class: 'flex justify-between items-center m-4',
-            id: product.id
+            class: 'flex justify-between items-center mt-4',
+            id: product.barcode
         },
         [
             Component(
-                'div', { class: 'flex items-center' },
+                'div', { class: 'flex-1 px-4 flex items-center justify-between' },
                 [
-                    Component('p', { class: 'font-semibold' }, product.barcode),
-                    Component(
-                        'p',
-                        { class: 'mx-4' },
-                        product.name
+                    Component('div', {class: 'w-4/12'},
+                        Component('p', { class: 'font-semibold' }, product.barcode)
                     ),
-                    Component('p', { }, `$${product.sell_price}`),
+                    Component('div', {class: 'w-6/12'},
+                        Component(
+                            'p',
+                            { class: 'mx-4' },
+                            product.name
+                        )
+                    ),
+                    Component('div', {class: 'w-2/12 flex justify-end mx-4'},
+                        Component('p', {}, `$${product.sell_price}`)
+                    ),
                 ]
             ),
             Component(
-                'div', { class: "flex items-center" },
+                'div', { class: "flex items-center px-4" },
                 [
                     ButtonListItem(() => {
-                        const input = document.getElementById(`quantity:${product.name}`);
+                        const input = document.getElementById(`q:${product.barcode}`);
                         let count = input.value;
                         input.value = parseInt(count) - 1;
                     }, MinusCircleOutline()),
@@ -37,12 +43,12 @@ export const CartItem = (product) => {
                             class: 'px-4 mx-1 py-2 w-16 rounded-md text-center focus:outline-none',
                             value: 1,
                             type: 'text',
-                            name: product.name,
-                            id: `quantity:${product.name}`
+                            name: `q:${product.barcode}`,
+                            id: `q:${product.barcode}`
                         }
                     ),
                     ButtonListItem(() => {
-                        const input = document.getElementById(`quantity:${product.name}`);
+                        const input = document.getElementById(`q:${product.barcode}`);
                         let count = input.value;
                         input.value = parseInt(count) + 1;
                     }, PlusCircleOutline()),

@@ -12,8 +12,8 @@
         <div class="p-4 bg-white rounded-lg shadow-md w-1/4 flex items-center">
             <form class="m-0 flex items-center" id="search" action="{{ route('product.search') }}">
                 @csrf
-                <input name="name" id="name" type="text">
-                <button>Buscar</button>
+                <input class="px-4 py-2 w-1/3 rounded-md border border-gray-300" name="name" id="name" type="text" placeholder="Buscar...">
+                <button class="bg-primary rounded-md px-4 py-2 ml-4 font-bold text-white">Buscar</button>
             </form>
         </div>
         <div class="mt-4 h-full" id="products-cart-container">

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Product;
 use App\Models\Sale;
 use App\Models\Ticket;
 use Error;
@@ -12,7 +13,11 @@ class TicketRepository
 {
     public static function all()
     {
-        return Ticket::all();
+        return Ticket::select(
+            'folio as Folio',
+            'created_at as Fecha de creación',
+            'updated_at as Última modificación'
+        )->paginate(10);
     }
 
     public static function find($folio)
@@ -30,63 +35,52 @@ class TicketRepository
         $formatedProducts = [];
 
         foreach ($products as $name => $count) {
-
-            $key = str_replace('_', ' ', $name);
+            $key = str_replace('q:', '', $name);
 
             $formatedProducts[$key] = $count;
         }
 
         $products = $formatedProducts;
 
-        $productsName = array_keys($products);
+        $productsBarcode = array_keys($products);
 
-        $productsData = DB::table('products as p')
-            ->where(function ($query) use ($productsName) {
-                foreach ($productsName as $name) {
-                    $query->orWhere('name', 'like', "%$name%");
-                }
-            })
+        $productsData = Product::where(function ($query) use ($productsBarcode) {
+            foreach ($productsBarcode as $barcode) {
+                $query->orWhere('barcode', 'like', "%$barcode%");
+            }
+        })
             ->get([
                 'id',
                 'sell_price',
                 'buy_cost',
-                'name'
+                'name',
+                'stock',
+                'barcode'
             ]);
 
-        foreach ($products as $name => $count) {
-            $productData = $productsData->filter(function($product) use($name){
-                return $product->name === $name;
+        foreach ($products as $barcode => $count) {
+            $product = $productsData->filter(function ($product) use ($barcode) {
+                return $product->barcode == $barcode;
             })->values();
 
-            dd($productData);
+            if (count($product) != 0) {
+                $product = $product[0];
+
+                $product->stock -= $count;
+
+                $product->save();
+
+                $sales[] = [
+                    'sell_price' => $product->sell_price,
+                    'buy_cost' => $product->buy_cost,
+                    'quantity' => $count,
+                    'product_id' => $product->id,
+                    'ticket_id' => $ticket->id
+                ];
+            }
         }
 
-        //$productsData = $productsModel->toArray();
-
-        // dd($productsData, $productsModel);
-
-        // foreach ($products as $name => $count) {
-        //     $productData = array_values(array_filter(
-        //         $productsData,
-        //         function ($data) use ($name) {
-        //             return $data->name === $name;
-        //         }
-        //     ));
-
-        //     if (!empty($productData)) {
-        //         $productData = $productData[0];
-        //     }
-
-        //     $sales[] = [
-        //         'sell_price' => $productData->sell_price,
-        //         'buy_cost' => $productData->buy_cost,
-        //         'quantity' => $count,
-        //         'product_id' => $productData->id,
-        //         'ticket_id' => $ticket->id
-        //     ];
-        // }
-
-        // Sale::insert($sales);
+        Sale::insert($sales);
 
         return 'Venta realizada con éxito';
     }
