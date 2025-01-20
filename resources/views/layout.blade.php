@@ -7,8 +7,18 @@
     <title>@yield('title', 'Dashboard')</title>
 </head>
 
-<body class="p-8 bg-gray-100 h-full">
-    @yield('content')
+<body class="bg-gray-100 h-full">
+    <div class="flex flex-row">
+        <div class="w-1/12">
+            <x-bars.side.bar />
+        </div>
+        <div class="w-11/12">
+            <div>
+                <x-bars.top.bar />
+            </div>
+            @yield('content')
+        </div>
+    </div>
 </body>
 
 </html>

@@ -5,7 +5,7 @@
 @section('title', 'Ventas')
 
 @section('content')
-    <div class="p-6 bg-white rounded-lg shadow-md">
+    <div class="m-8 p-6 bg-white rounded-lg shadow-md">
         @session('status')
             <div class="status">
                 {{ $value }}
