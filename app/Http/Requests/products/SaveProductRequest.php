@@ -23,10 +23,12 @@ class SaveProductRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255', 'min:1'],
+            'barcode' => ['required', 'string', 'max:255', 'min:1'],
             'sell_price' => ['required', 'numeric', 'min:1'],
+            'buy_cost' => ['required', 'numeric', 'min:1'],
             'stock' => ['required', 'numeric', 'min:1'],
-            'description' => ['required', 'string', 'max:255', 'min:1'],
-            'image' => ['required', 'string', 'max:255', 'min:1']
+            'image' => ['required', 'string', 'max:255', 'min:1'],
+            'description' => ['required', 'string', 'max:255', 'min:1']
         ];
     }
 }

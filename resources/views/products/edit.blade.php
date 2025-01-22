@@ -28,6 +28,20 @@
             </div>
 
             <div>
+                <label for="barcode" class="block mb-2 text-sm font-medium text-gray-700">Codigo de barras</label>
+                <input
+                    type="text"
+                    id="barcode"
+                    name="barcode"
+                    value="{{ old('barcode', $product->barcode) }}"
+                    required
+                    class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Escribe el codigo de barras del producto"
+                />
+            </div>
+
+
+            <div>
                 <label for="sell_price" class="block mb-2 text-sm font-medium text-gray-700">Precio de venta</label>
                 <input
                     type="number"
