@@ -17,7 +17,7 @@
                         {{ $value }}
                     </div>
                 @endsession
-                <x-table.table :elements="$tickets" prefix="ticket" id="Folio" />
+                <x-table.table :edit="false" :elements="$tickets" prefix="ticket" id="Folio" />
                 <div class="flex justify-between items-center mt-4">
                     <p class="text-gray-600">Mostrando {{ $tickets->firstItem() }} a {{ $tickets->lastItem() }} de
                         {{ $tickets->total() }} Ventas</p>
