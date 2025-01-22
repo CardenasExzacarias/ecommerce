@@ -9,10 +9,14 @@
                     <a href="{{ route("$prefix.show", $element->$id) }}" class="text-green-500 hover:text-green-700">
                         @svg('eva-eye', 'w-8 h-8 inline-block')
                     </a>
-                    <a href="{{ url("$prefix/" . $element->$id . '/edit') }}" class="text-blue-500 hover:text-blue-700">
-                        @svg('eva-edit', 'w-8 h-8 inline-block')
-                    </a>
-                    <form class="flex items-center p-0 m-0 " action="{{ route("$prefix.destroy", $element->$id) }}" method="POST">
+                    @if ($edit)
+                        <a href="{{ url("$prefix/" . $element->$id . '/edit') }}"
+                            class="text-blue-500 hover:text-blue-700">
+                            @svg('eva-edit', 'w-8 h-8 inline-block')
+                        </a>
+                    @endif
+                    <form class="flex items-center p-0 m-0 " action="{{ route("$prefix.destroy", $element->$id) }}"
+                        method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-500 hover:text-red-700">
