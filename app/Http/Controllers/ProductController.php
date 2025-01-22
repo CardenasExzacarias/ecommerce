@@ -14,9 +14,10 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $name = $request->query('name'); // Obtener el término de búsqueda si existe
-        $products = ProductRepository::all($name); // Pasar el nombre de búsqueda a la consulta
-
+   
+        $name = $request->query('name');
+        $products = ProductRepository::all($name); 
+        
         return view('products.index', compact('products'));
     }
 
