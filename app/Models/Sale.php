@@ -12,6 +12,9 @@ class Sale extends Model
     protected $fillable = [
         'product_id',
         'ticket_id',
+        'sell_price',
+        'buy_cost',
+        'quantity',
     ];
 
     public $timestamps = false;

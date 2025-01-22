@@ -13,17 +13,30 @@ class TicketRepository
 {
     public static function all($search = null)
     {
-        $query = Ticket::query();
+        $query = Ticket::join(
+            'sales as s',
+            's.ticket_id',
+            '=',
+            'tickets.id'
+        );
 
-        if($search){
-            $query->where('folio', 'like', "%$search%");
+        if ($search) {
+            $query
+                ->where('folio', 'like', "%$search%");
         }
 
-        return $query->select(
-            'folio as Folio',
-            'created_at as Fecha de creación',
-        )->paginate(10);
+        return $query
+            ->select(
+                'tickets.folio as Folio',
+                DB::raw('SUM(s.sell_price * s.quantity) as "Venta"'),
+                DB::raw('SUM(s.buy_cost * s.quantity) as "Costo"'),
+                DB::raw('SUM((s.sell_price - s.buy_cost)*s.quantity) as "Ganancia"'),
+                'tickets.created_at as Fecha de venta'
+            )
+            ->groupBy('s.ticket_id', 'tickets.folio', 'tickets.created_at')
+            ->paginate(10);
     }
+
 
     public static function find($folio)
     {

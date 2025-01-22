@@ -24,7 +24,7 @@
                     <p class="text-gray-600">Mostrando {{ $tickets->firstItem() }} a {{ $tickets->lastItem() }} de
                         {{ $tickets->total() }} Ventas</p>
                     <div class="flex items-center space-x-1">
-                        {{ $tickets->appends(['name' => request()->query('name')])->onEachSide(1)->links() }}
+                        {{ $tickets->appends(['search' => request()->query('search')])->onEachSide(1)->links() }}
                     </div>
                 </div>
             </div>
