@@ -28,24 +28,31 @@
             </div>
         </div>
         <div class="w-6/12 m-4">
-            <div class="p-6 w-full bg-white rounded-lg shadow-md" id="revenue">
-            </div>
-            <div class="mt-4 p-6 w-full bg-white rounded-lg shadow-md" id="">
-                {{-- <div class="col">
-                    <img class="w-full h-80 rounded-md" alt="Imagen del producto" src="https://picsum.photos/400/800">
+            <div
+                class="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
+                <x-charts.profit />
+                <div>
+                    <div id="revenue"></div>
                 </div>
-                <div class="col flex flex-col justify-between">
-                    <div>
-                        <a href="http://127.0.0.1:8000/product/1">
-                            <p class="font-semibold">Wallet</p>
-                        </a>
-                        <p class="py-2">$816</p>
-                        <p class="py-2">Keep your essentials organized and stylish with this durable leather wallet,
-                            designed for both men and women.</p>
+            </div>
+            <div class="mt-4 p-6 w-full bg-white rounded-lg shadow-md">
+                <div class="relative w-full overflow-hidden">
+                    <div class="flex transition-transform duration-700 ease-in-out" id="carousel">
+                        <x-carrousel.item />
+                        <x-carrousel.item />
+                        <x-carrousel.item />
+                        <x-carrousel.item />
+                        <x-carrousel.item />
                     </div>
-                    <div class="flex items-center justify-center space-x-4">
-                    </div>
-                </div> --}}
+                    <button id="prev-slide"
+                        class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2">
+                        &#10094;
+                    </button>
+                    <button id="next-slide"
+                        class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2">
+                        &#10095;
+                    </button>
+                </div>
             </div>
         </div>
     </div>
