@@ -14,10 +14,10 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-   
+
         $name = $request->query('name');
-        $products = ProductRepository::all($name); 
-        
+        $products = ProductRepository::all($name);
+
         return view('products.index', compact('products'));
     }
 
@@ -43,16 +43,19 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($barcode)
     {
+        $product = ProductRepository::find($barcode);
         return view('products.show', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit($barcode)
     {
+        $product = ProductRepository::find($barcode);
+
         return view('products.edit', compact('product'));
     }
 
@@ -60,20 +63,23 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SaveProductRequest $request, Product $product)
+    public function update(SaveProductRequest $request, $barcode)
     {
+        $product = ProductRepository::find($barcode);
+
         $product->update($request->validated());
 
-        return redirect()->route('product.edit', $product->id)
+        return redirect()->route('product.edit', $product->barcode)
             ->with('status', 'Producto actualizado correctamente');
     }
 
-    public function destroy(Product $product, Request $request)
+    public function destroy($barcode, Request $request)
     {
+        $product = ProductRepository::find($barcode);
         ProductRepository::destroy($product);
         $page = $request->input('page', 1);
         return redirect()->route('product.index', ['page' => $page])
-                     ->with('status', 'Producto eliminado correctamente.');
+            ->with('status', 'Producto eliminado correctamente.');
     }
 
     public function search(Request $request)
@@ -87,6 +93,4 @@ class ProductController extends Controller
 
         return response()->json($products);
     }
-
-
 }

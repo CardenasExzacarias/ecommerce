@@ -10,7 +10,7 @@
     <div class="p-6 bg-white rounded-lg shadow-md">
         <h2 class="mb-6 text-xl font-bold text-gray-700">Editar Producto</h2>
 
-        <form action="{{ route('product.update',$product->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('product.update',$product->barcode) }}" method="POST" class="space-y-4">
             @csrf
             @method('PATCH')
 

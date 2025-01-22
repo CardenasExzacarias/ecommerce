@@ -9,27 +9,29 @@ use Illuminate\Database\QueryException;
 class ProductRepository
 {
     public static function all($name = null)
-{
-    $query = Product::query(); // Crea la consulta base
+    {
+        $query = Product::query(); // Crea la consulta base
 
-    if ($name) {
-        $query->where('name', 'like', "%$name%"); // Aplica el filtro si hay un nombre
+        if ($name) {
+            $query->where('name', 'like', "%$name%");
+        }
+
+        return $query->select(
+            'barcode as Codigo de barras',
+            'name as Nombre',
+            'sell_price as Precio de venta',
+            'buy_cost as Costo de compra',
+            'stock as Disponibles',
+            'created_at as Fecha de creación',
+            'updated_at as Última modificación'
+        )->paginate(10);
     }
 
-    return $query->select(
-        'id',
-        'name',
-        'barcode',
-        'sell_price',
-        'buy_cost',
-        'stock',
-        'image',
-        'description',
-        'created_at',
-        'updated_at'
-    )->paginate(10); // Pagina los resultados filtrados
-}
-
+    public static function find($barcode)
+    {
+        return Product::where('barcode', $barcode)
+            ->first();
+    }
 
 
     public static function store($fields)

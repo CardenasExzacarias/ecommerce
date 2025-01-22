@@ -12,7 +12,11 @@ Route::get('/', function () {
 Route::get('product/search', [ProductController::class, 'search'])
     ->name('product.search');
 
-Route::resource('product', ProductController::class);
+Route::resource('product', ProductController::class, [
+    'parameters' => [
+        'product' => 'barcode'
+    ]
+]);
 
 Route::resource('ticket', TicketController::class, [
     'parameters' => [

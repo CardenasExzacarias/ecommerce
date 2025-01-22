@@ -34,7 +34,7 @@
             </form>
         </div>
 
-        <x-table.table :elements="$products" prefix="product" id="id" />
+        <x-table.table :elements="$products" prefix="product" id="Codigo de barras" />
 
         <div class="flex justify-between items-center mt-4">
             <p class="text-gray-600">
