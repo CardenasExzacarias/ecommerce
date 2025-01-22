@@ -909,6 +909,8 @@ class ProductFactory extends Factory
 
         $buy_cost  = fake()->numberBetween(500, $sell_price);
 
+        $dateTime = fake()->dateTimeBetween('2020-01-01', '2025-12-31');
+
         return [
             'name' => $product['name'],
             'sell_price' => $sell_price,
@@ -917,6 +919,8 @@ class ProductFactory extends Factory
             'image' => 'https://picsum.photos/400/800',
             'description' => $product['description'],
             'barcode' => fake()->numberBetween(1000000000000, 9999999999999),
+            'created_at' => $dateTime,
+            'updated_at' => $dateTime,
         ];
     }
 }

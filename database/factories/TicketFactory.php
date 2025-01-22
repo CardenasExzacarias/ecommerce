@@ -16,8 +16,12 @@ class TicketFactory extends Factory
      */
     public function definition(): array
     {
+        $dateTime = fake()->dateTimeBetween('2020-01-01', '2025-12-31');
+
         return [
-            'folio' => fake()->numberBetween(100000000, 999999999)
+            'folio' => fake()->numberBetween(100000000, 999999999),
+            'created_at' => $dateTime,
+            'updated_at' => $dateTime,
         ];
     }
 }

@@ -25,7 +25,7 @@ class SaleFactory extends Factory
         return [
             'sell_price' => $sell_price,
             'buy_cost' => $buy_cost,
-            'quantity' => fake()->numberBetween(1, 5),
+            'quantity' => fake()->numberBetween(1, 100),
             'product_id' => Product::factory(),
             'ticket_id' => Ticket::factory(),
         ];
