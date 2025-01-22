@@ -24,7 +24,7 @@ export const ProductListItem = (product, cart, cartList) => {
                 [
                     Component('div', {}, [
                         Component(
-                            'a', { href: secure_url(`product/${product.id}`) },
+                            'a', { href: secure_url(`product/${product.barcode}`) },
                             Component(
                                 'p', { class: 'font-semibold' },
                                 product.name

@@ -35,6 +35,7 @@ class TicketRepository
                 'tickets.created_at as Fecha de venta'
             )
             ->groupBy('s.ticket_id', 'tickets.folio', 'tickets.created_at')
+            ->orderBy('Fecha de venta', 'desc')
             ->paginate(10);
     }
 

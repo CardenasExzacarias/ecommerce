@@ -4,7 +4,7 @@
     </div>
     <div class="col flex flex-col justify-between">
         <div>
-            <a href="http://127.0.0.1:8000/product/1">
+            <a href="{{ route('product.show', $product->barcode) }}">
                 <p><b>Código:</b> {{ $product->barcode }}</p>
             </a>
             <p class="py-2"><b>Nombre:</b> {{ $product->name }}</p>
