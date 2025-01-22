@@ -9,6 +9,7 @@ use Error;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
+
 class TicketRepository
 {
     public static function all($search = null)
@@ -36,7 +37,6 @@ class TicketRepository
             ->groupBy('s.ticket_id', 'tickets.folio', 'tickets.created_at')
             ->paginate(10);
     }
-
 
     public static function find($folio)
     {

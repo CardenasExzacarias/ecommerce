@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\tickets\SaveTicketRequest;
-use App\Models\Ticket;
+use App\Repositories\ProductRepository;
 use App\Repositories\TicketRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -16,7 +16,9 @@ class TicketController extends Controller
 
         $tickets = TicketRepository::all($search);
 
-        return view('tickets.index', compact('tickets'));
+        $monthTop = ProductRepository::getMonthTop();
+
+        return view('tickets.index', compact('tickets', 'monthTop'));
     }
 
     public function create()

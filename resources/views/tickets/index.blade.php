@@ -6,7 +6,7 @@
 
 @extends('layout')
 
-@section('search', route("ticket.index"))
+@section('search', route('ticket.index'))
 
 @section('title', 'Ventas')
 
@@ -37,14 +37,13 @@
                     <div id="revenue"></div>
                 </div>
             </div>
+            {{-- @dd($monthTop) --}}
             <div class="mt-4 p-6 w-full bg-white rounded-lg shadow-md">
                 <div class="relative w-full overflow-hidden">
                     <div class="flex transition-transform duration-700 ease-in-out" id="carousel">
-                        <x-carrousel.item />
-                        <x-carrousel.item />
-                        <x-carrousel.item />
-                        <x-carrousel.item />
-                        <x-carrousel.item />
+                        @foreach ($monthTop as $product)
+                            <x-carrousel.item :product="$product" />
+                        @endforeach
                     </div>
                     <button id="prev-slide"
                         class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2">
