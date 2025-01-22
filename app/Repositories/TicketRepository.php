@@ -11,12 +11,17 @@ use Illuminate\Support\Facades\DB;
 
 class TicketRepository
 {
-    public static function all()
+    public static function all($search = null)
     {
-        return Ticket::select(
+        $query = Ticket::query();
+
+        if($search){
+            $query->where('folio', 'like', "%$search%");
+        }
+
+        return $query->select(
             'folio as Folio',
             'created_at as Fecha de creación',
-            'updated_at as Última modificación'
         )->paginate(10);
     }
 

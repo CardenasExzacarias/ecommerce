@@ -6,6 +6,8 @@
 
 @extends('layout')
 
+@section('search', route("ticket.index"))
+
 @section('title', 'Ventas')
 
 @section('content')

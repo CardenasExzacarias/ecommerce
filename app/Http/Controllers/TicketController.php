@@ -10,9 +10,11 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $tickets = TicketRepository::all();
+        $search = $request->query('search');
+
+        $tickets = TicketRepository::all($search);
 
         return view('tickets.index', compact('tickets'));
     }
