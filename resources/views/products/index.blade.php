@@ -22,7 +22,7 @@
                 </a>
             </div>
             -->
-    <div class="p-6 bg-white rounded-lg shadow-md mt-5 dark:bg-boxdark dark:text-white">
+    <div class="w-full m-4 p-6 bg-white rounded-lg shadow-md dark:bg-boxdark dark:text-white">
         <x-table.table :elements="$products" prefix="product" id="Codigo de barras" />
 
         <div class="flex justify-between items-center mt-4">
