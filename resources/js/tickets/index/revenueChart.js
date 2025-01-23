@@ -1,15 +1,49 @@
-import ApexCharts from 'apexcharts'
+import ApexCharts from 'apexcharts';
+import { Component } from "../../Component";
 
 export const revenueChart = () => {
+    const currentYear = new Date().getFullYear();
+    const lastYear = currentYear - 1;
+
+    const ticketsCurrentYear = tickets.filter(sale => parseInt(sale.year_month.split('-')[0]) === currentYear);
+    const ticketsLastYear = tickets.filter(sale => parseInt(sale.year_month.split('-')[0]) === lastYear);
+
+    const sortByMonth = (a, b) => {
+        const monthA = parseInt(a.year_month.split('-')[1]);
+        const monthB = parseInt(b.year_month.split('-')[1]);
+        return monthA - monthB;
+    };
+
+    ticketsCurrentYear.sort(sortByMonth);
+    ticketsLastYear.sort(sortByMonth);
+
+    const totalSalesDataCurrentYear = ticketsCurrentYear.map(sale => sale.total_sales);
+    const totalCostDataCurrentYear = ticketsCurrentYear.map(sale => sale.total_cost);
+    const categoriesCurrentYear = ticketsCurrentYear.map(sale => sale.year_month);
+
+    const totalSalesDataLastYear = ticketsLastYear.map(sale => sale.total_sales);
+    const totalCostDataLastYear = ticketsLastYear.map(sale => sale.total_cost);
+    const categoriesLastYear = ticketsLastYear.map(sale => sale.year_month);
+
+    const differenceDataCurrentYear = totalSalesDataCurrentYear.map((sale, index) => {
+        return sale - totalCostDataCurrentYear[index];
+    });
+
+    const differenceDataLastYear = totalSalesDataLastYear.map((sale, index) => {
+        return sale - totalCostDataLastYear[index];
+    });
+
+    let isCurrentYear = true;
+
     const chartOneOptions = {
         series: [
             {
-                name: "Product One",
-                data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
+                name: "Venta total",
+                data: totalSalesDataCurrentYear,
             },
             {
-                name: "Product Two",
-                data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
+                name: "Costo total",
+                data: totalCostDataCurrentYear,
             },
         ],
         legend: {
@@ -17,7 +51,7 @@ export const revenueChart = () => {
             position: "top",
             horizontalAlign: "left",
         },
-        colors: ["#3C50E0", "#80CAEE"],
+        colors: ["#219653", "#FFA70B"],
         chart: {
             fontFamily: "Satoshi, sans-serif",
             height: 335,
@@ -30,7 +64,6 @@ export const revenueChart = () => {
                 left: 0,
                 opacity: 0.1,
             },
-
             toolbar: {
                 show: false,
             },
@@ -57,7 +90,6 @@ export const revenueChart = () => {
             width: [2, 2],
             curve: "straight",
         },
-
         markers: {
             size: 0,
         },
@@ -83,7 +115,7 @@ export const revenueChart = () => {
         markers: {
             size: 4,
             colors: "#fff",
-            strokeColors: ["#3056D3", "#80CAEE"],
+            strokeColors: ["#219653", "#FFA70B"],
             strokeWidth: 3,
             strokeOpacity: 0.9,
             strokeDashArray: 0,
@@ -96,20 +128,12 @@ export const revenueChart = () => {
         },
         xaxis: {
             type: "category",
-            categories: [
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-            ],
+            categories: categoriesCurrentYear,
+            labels:{
+                style: {
+                    class: 'text-black dark:text-white'
+                }
+            },
             axisBorder: {
                 show: false,
             },
@@ -123,18 +147,86 @@ export const revenueChart = () => {
                     fontSize: "0px",
                 },
             },
+            labels:{
+                style: {
+                    class: 'text-black dark:text-white'
+                }
+            },
             min: 0,
-            max: 100,
+            max: Math.max(...totalSalesDataCurrentYear, ...totalCostDataCurrentYear) + 10,
         },
+        tooltip: {
+            shared: true,
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+                const differenceData = isCurrentYear ? differenceDataCurrentYear : differenceDataLastYear;
+                return Component('div', { class: "flex p-2 flex-col dark:bg-boxdark" }, [
+                    Component('span', { class: "flex flex-row items-center" }, [
+                        Component('span', { class: "inline-block w-4 h-4 bg-white dark:bg-boxdark border-4 mx-1 border-success rounded-full" }),
+                        Component('p', { class: "text-black-0 dark:text-white" }, [
+                            Component('b', { class: "mx-1" }, 'Venta:'),
+                            series[0][dataPointIndex]
+                        ])
+                    ]),
+                    Component('span', { class: "flex flex-row items-center" }, [
+                        Component('span', { class: "inline-block w-4 h-4 bg-white dark:bg-boxdark border-4 mx-1 border-warning rounded-full" }),
+                        Component('p', { class: "text-black-0 dark:text-white" }, [
+                            Component('b', { class: "mx-1" }, 'Costo:'),
+                            series[1][dataPointIndex]
+                        ])
+                    ]),
+                    Component('span', { class: "flex flex-row items-center" }, [
+                        Component('span', { class: "inline-block w-4 h-4 bg-white dark:bg-boxdark border-4 mx-1 border-primary rounded-full" }),
+                        Component('p', { class: "text-black-0 dark:text-white" }, [
+                            Component('b', { class: "mx-1" }, 'Ganancia:'),
+                            differenceData[dataPointIndex]
+                        ])
+                    ])
+                ]);
+            }
+        }
     };
 
     const chartSelector = document.getElementById('revenue');
 
+    let chartOne;
+
     if (chartSelector) {
-        const chartOne = new ApexCharts(
-            chartSelector,
-            chartOneOptions
-        );
+        chartOne = new ApexCharts(chartSelector, chartOneOptions);
         chartOne.render();
     }
+
+    document.getElementById('yearToggle').addEventListener('click', () => {
+        isCurrentYear = !isCurrentYear;
+        const newData = isCurrentYear ? {
+            totalSales: totalSalesDataCurrentYear,
+            totalCost: totalCostDataCurrentYear,
+            categories: categoriesCurrentYear,
+            difference: differenceDataCurrentYear
+        } : {
+            totalSales: totalSalesDataLastYear,
+            totalCost: totalCostDataLastYear,
+            categories: categoriesLastYear,
+            difference: differenceDataLastYear
+        };
+
+        chartOne.updateOptions({
+            series: [
+                {
+                    name: "Venta total",
+                    data: newData.totalSales,
+                },
+                {
+                    name: "Costo total",
+                    data: newData.totalCost,
+                },
+            ],
+            xaxis: {
+                categories: newData.categories,
+            },
+            yaxis: {
+                max: Math.max(...newData.totalSales, ...newData.totalCost) + 10,
+            }
+        });
+        document.getElementById('yearToggle').textContent = isCurrentYear ? 'Año actual' : 'Año anterior';
+    });
 };

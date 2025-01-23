@@ -7,7 +7,7 @@
             <a href="{{ route('product.show', $product->barcode) }}">
                 <p><b>Código:</b> {{ $product->barcode }}</p>
             </a>
-            <p class="py-2"><b>Nombre:</b> {{ $product->name }}</p>
+            <p class="py-2 "><b>Nombre:</b> {{ $product->name }}</p>
             <p class="py-2"><b>Venta:</b> ${{ $product->sell_price }}</p>
             <p class="py-2"><b>Costo:</b> ${{ $product->buy_cost }}</p>
             <p class="py-2"><b>Ganacia:</b> ${{ $product->sell_price - $product->buy_cost }}</p>

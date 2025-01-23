@@ -1,5 +1,10 @@
 <script>
-    const tickets = @json($tickets);
+    const tickets = @json(
+        $monthlySales->map(function ($sale) {
+            unset($sale->tickets);
+            return $sale;
+        }));
+    console.log(tickets);
 </script>
 
 @vite(['resources/css/app.css', 'resources/js/tickets/index/index.js'])
@@ -13,7 +18,7 @@
 @section('content')
     <div class="flex flex-row">
         <div class="w-6/12 mt-4 ml-2">
-            <div class="p-6 bg-white rounded-lg shadow-md">
+            <div class="p-6 bg-white dark:bg-boxdark rounded-lg shadow-md">
                 @session('status')
                     <div class="status">
                         {{ $value }}
@@ -37,7 +42,6 @@
                     <div id="revenue"></div>
                 </div>
             </div>
-            {{-- @dd($monthTop) --}}
             <div class="mt-4 p-6 w-full bg-white rounded-lg shadow-md">
                 <div class="relative w-full overflow-hidden">
                     <div class="flex transition-transform duration-700 ease-in-out" id="carousel">
