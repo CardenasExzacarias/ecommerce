@@ -6,12 +6,6 @@ import { getFormData } from "../utilities/getFormData";
 const search = document.getElementById('search');
 const products = document.getElementById('products');
 const cart = document.getElementById('cart');
-const productsCartContainer = document.getElementById('products-cart-container');
-const storeContainerSubmit = document.getElementById('store_container_submit');
-
-productsCartContainer.style.maxHeight = productsCartContainer.clientHeight;
-products.style.maxHeight = productsCartContainer.clientHeight;
-cart.style.maxHeight = productsCartContainer.clientHeight - storeContainerSubmit.clientHeight;
 
 const cartData = [];
 const cartList = new Struct();
