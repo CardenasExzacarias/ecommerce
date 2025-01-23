@@ -8,9 +8,9 @@
 
 @section('content')
 
-    <div class="flex justify-center items-center min-h-screen bg-gray-50">
+    <div class="flex justify-center items-center min-h-screen bg-gray-50 ">
         <div
-            class="flex flex-col md:flex-row bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-4xl mx-4">
+            class="flex flex-col md:flex-row bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-4xl mx-4 dark:bg-boxdark dark:text-white">
             <div class="w-full md:w-1/3 overflow-hidden">
                 <img src="https://aguacatec.es/wp-content/uploads/2023/10/e5a978b8-6772-4c85-a50e-15581af7d483.png"
                     alt="Imagen de {{ $product->name }}"

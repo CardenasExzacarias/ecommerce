@@ -1,8 +1,8 @@
 <tbody>
     @foreach ($elements as $element)
-        <tr class="">
+        <tr class="dark:border-strokedark dark:bg-boxdark dark:text ">
             @foreach ($element->getAttributes() as $attribute)
-                <td class="p-4 text-center text-gray-700 border-b">{{ $attribute }}</td>
+                <td class="p-4 text-center text-gray-700 border-b dark:text-white">{{ $attribute }}</td>
             @endforeach
             <td class="p-4 text-center border-b">
                 <div class="flex justify-center items-center space-x-2">

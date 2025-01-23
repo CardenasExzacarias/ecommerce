@@ -1,5 +1,13 @@
 @vite(['resources/css/app.css', 'resources/js/tickets/create.js'])
 
+@extends('layout')
+
+@section('search', route('ticket.index'))
+
+@section('title', 'Ventas')
+
+@section('content')
+
 <body class="p-8 bg-gray-100 h-screen">
     <div class="flex flex-col h-full">
         @if ($errors->any())
@@ -18,8 +26,8 @@
         </div>
         <div class="mt-4 h-full" id="products-cart-container">
             <div class="flex h-full">
-                <div class="w-1/2 mr-4 overflow-y-scroll bg-white rounded-lg shadow-md" id="products"></div>
-                <div class="w-1/2 ml-4 bg-white rounded-lg shadow-md" id="cart-container">
+                <div class="w-1/2 mr-4 overflow-y-scroll bg-white rounded-lg shadow-md dark:bg-boxdark" id="products"></div>
+                <div class="w-1/2 ml-4 bg-white rounded-lg shadow-md dark:bg-boxdark" id="cart-container">
                     <form class="h-full relative" id="store" action="{{ route('ticket.store') }}" method="POST">
                         @csrf
                         <div class="overflow-y-scroll" id='cart'></div>
@@ -36,3 +44,4 @@
         </div>
     </div>
 </body>
+@endsection

@@ -18,7 +18,7 @@
 @section('content')
     <div class="flex flex-row">
         <div class="w-6/12 mt-4 ml-2">
-            <div class="p-6 bg-white dark:bg-boxdark rounded-lg shadow-md">
+            <div class="p-6 bg-white rounded-lg shadow-md dark:border-strokedark dark:bg-boxdark">
                 @session('status')
                     <div class="status">
                         {{ $value }}
@@ -26,9 +26,9 @@
                 @endsession
                 <x-table.table :edit="false" :elements="$tickets" prefix="ticket" id="Folio" />
                 <div class="flex justify-between items-center mt-4">
-                    <p class="text-gray-600">Mostrando {{ $tickets->firstItem() }} a {{ $tickets->lastItem() }} de
+                    <p class="text-gray-600 dark:text-white">Mostrando {{ $tickets->firstItem() }} a {{ $tickets->lastItem() }} de
                         {{ $tickets->total() }} Ventas</p>
-                    <div class="flex items-center space-x-1">
+                    <div class="flex items-center space-x-1 ">
                         {{ $tickets->appends(['search' => request()->query('search')])->onEachSide(1)->links() }}
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <div id="revenue"></div>
                 </div>
             </div>
-            <div class="mt-4 p-6 w-full bg-white rounded-lg shadow-md">
+            <div class="mt-4 p-6 w-full bg-white rounded-lg shadow-md dark:bg-boxdark">
                 <div class="relative w-full overflow-hidden">
                     <div class="flex transition-transform duration-700 ease-in-out" id="carousel">
                         @foreach ($monthTop as $product)

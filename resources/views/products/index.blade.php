@@ -22,11 +22,11 @@
                 </a>
             </div>
             -->
-    <div class="p-6 bg-white rounded-lg shadow-md mt-5">
+    <div class="p-6 bg-white rounded-lg shadow-md mt-5 dark:bg-boxdark dark:text-white">
         <x-table.table :elements="$products" prefix="product" id="Codigo de barras" />
 
         <div class="flex justify-between items-center mt-4">
-            <p class="text-gray-600">
+            <p class="text-gray-600 dark:text-white">
                 Mostrando {{ $products->firstItem() }} a {{ $products->lastItem() }} de {{ $products->total() }}
                 productos </p>
             <div class="flex items-center space-x-1">
