@@ -2,7 +2,7 @@
 
 @extends('layout')
 
-@section('name', route('product.index'))
+@section('search', route('product.index'))
 
 @section('title', 'Productos')
 

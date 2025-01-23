@@ -2,13 +2,13 @@
 
 @extends('layout')
 
-@section('name', route('product.index'))
+@section('search', route('product.index'))
 
 @section('title', 'Información')
 
 @section('content')
 
-    <div class="flex justify-center items-center min-h-screen bg-gray-50 ">
+    <div class="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-boxdark dark:text-white">
         <div
             class="flex flex-col md:flex-row bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-4xl mx-4 dark:bg-boxdark dark:text-white">
             <div class="w-full md:w-1/3 overflow-hidden">
