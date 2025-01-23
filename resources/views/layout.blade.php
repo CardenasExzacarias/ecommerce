@@ -8,7 +8,7 @@
 </head>
 
 <body class="bg-gray-100 dark:bg-boxdark-2 text-black dark:text-white h-full">
-    <div class="flex flex-row">
+    <div class="flex flex-row h-full">
         <div class="w-1/12">
             <x-bars.side.bar />
         </div>

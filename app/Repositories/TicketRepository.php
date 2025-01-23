@@ -110,11 +110,13 @@ class TicketRepository
             ->join('products as p', 'p.id', '=', 's.product_id')
             ->where('s.ticket_id', $ticket->id)
             ->get([
-                'name',
-                'quantity',
-                's.sell_price',
-                's.id as sale',
-                'p.id as product',
+                'image as Imagen',
+                'barcode as Codigo de barras',
+                'name as Nombre',
+                's.sell_price as Precio',
+                's.buy_cost as Costo',
+                DB::raw('s.sell_price - s.buy_cost as Ganancia'),
+                'quantity as Unidades vendidas',
             ]);
 
         return $sales;

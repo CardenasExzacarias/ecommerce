@@ -41,7 +41,7 @@ class TicketController extends Controller
     {
         $ticket = TicketRepository::find($folio);
 
-        $sales = TicketRepository::getSales($ticket);
+        $sales = TicketRepository::getSales($ticket)->toArray();
 
         return view('tickets.show', compact('sales', 'ticket'));
     }
