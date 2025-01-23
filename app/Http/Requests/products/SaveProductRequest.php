@@ -21,6 +21,7 @@ class SaveProductRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'name' => ['required', 'string', 'max:255', 'min:1'],
             'barcode' => ['required', 'string', 'max:255', 'min:1'],

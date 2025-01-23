@@ -111,7 +111,7 @@
             @endif
 
             <div class="flex justify-end space-x-4">
-                <a href="{{ route('product.index') }}" class="px-4 py-2 font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">
+                <a href="{{ url()->previous() }}" class="px-4 py-2 font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">
                     Cancelar
                 </a>
                 <button type="submit" class="px-4 py-2 font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600">

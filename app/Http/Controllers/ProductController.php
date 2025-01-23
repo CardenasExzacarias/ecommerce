@@ -15,8 +15,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
 
-        $name = $request->query('name');
-        $products = ProductRepository::all($name);
+        $search = $request->query('search');
+        $products = ProductRepository::all($search);
 
         return view('products.index', compact('products'));
     }
@@ -66,9 +66,8 @@ class ProductController extends Controller
     public function update(SaveProductRequest $request, $barcode)
     {
         $product = ProductRepository::find($barcode);
-
         $product->update($request->validated());
-
+    
         return redirect()->route('product.edit', $product->barcode)
             ->with('status', 'Producto actualizado correctamente');
     }
