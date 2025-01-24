@@ -16,8 +16,8 @@
 @section('title', 'Ventas')
 
 @section('content')
-    <div class="w-6/12 mt-4 ml-2">
-        <div class="p-6 bg-white rounded-lg shadow-md dark:border-strokedark dark:bg-boxdark">
+    <div class="w-6/12 ml-2">
+        <div class="mt-4 p-6 bg-white rounded-lg shadow-md dark:border-strokedark dark:bg-boxdark">
             @session('status')
                 <div class="status">
                     {{ $value }}
@@ -36,7 +36,7 @@
     </div>
     <div class="w-6/12 m-4">
         <div
-            class="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
+            class="rounded-sm border border-stroke bg-white px-5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
             <x-charts.profit />
             <div>
                 <div id="revenue"></div>

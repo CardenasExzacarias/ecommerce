@@ -30,7 +30,7 @@ class TicketRepository
             ->select(
                 'tickets.folio as Folio',
                 DB::raw('SUM(s.sell_price * s.quantity) as "Venta"'),
-                DB::raw('SUM(s.buy_cost * s.quantity) as "Costo"'),
+                // DB::raw('SUM(s.buy_cost * s.quantity) as "Costo"'),
                 DB::raw('SUM((s.sell_price - s.buy_cost)*s.quantity) as "Ganancia"'),
                 'tickets.created_at as Fecha de venta'
             )

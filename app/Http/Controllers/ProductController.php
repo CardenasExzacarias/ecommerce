@@ -83,7 +83,7 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $name = $request->query('name');
+        $name = $request->query('search');
         $products = ProductRepository::search($name);
 
         if ($request->query('index') == 'true') {
