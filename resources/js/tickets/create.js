@@ -2,10 +2,13 @@ import axios from "axios";
 import { Component, Struct } from "../Component";
 import { ProductListItem } from "../components/products/ProductListItem";
 import { getFormData } from "../utilities/getFormData";
+import { Paginator } from "../components/paginator/Paginator";
 
 const search = document.getElementById('search');
 const products = document.getElementById('products');
 const cart = document.getElementById('cart');
+
+export let searchedValue = '';
 
 const cartData = [];
 const cartList = new Struct();
@@ -27,30 +30,33 @@ search.addEventListener('submit', (e) => {
 
     const { url, values } = getFormData(e.target);
 
+    searchedValue = values.search;
+
     axios.get(url, { params: values })
-        .then(res => {
-            const productElements = [];
-            res.data.data.forEach(product => {
-                productElements.push(
-                    ProductListItem(product, cart, cartList)
-                );
-            });
-
-            productElements.push(Component('div', {},
-                Component('button', {}, 'Siguiente')
-            ))
-
-            const component = new Struct();
-
-            const productList = Component(
-                'div',
-                {},
-                productElements,
-            );
-
-            component.addToStruct(productList).render(products);
-        })
+        .then(manageSearch)
         .catch(error => {
             console.error(error);
         });
 });
+
+export function manageSearch(res) {
+    console.log(res);
+    const productElements = [];
+    res.data.data.forEach(product => {
+        productElements.push(
+            ProductListItem(product, cart, cartList)
+        );
+    });
+
+    productElements.push(Paginator(res.data));
+
+    const component = new Struct();
+
+    const productList = Component(
+        'div',
+        {},
+        productElements,
+    );
+
+    component.addToStruct(productList).render(products);
+}

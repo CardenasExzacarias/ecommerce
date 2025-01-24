@@ -40,7 +40,7 @@ export const CartItem = (product) => {
                     Component(
                         'input',
                         {
-                            class: 'px-4 mx-1 py-2 w-16 rounded-md text-center focus:outline-none',
+                            class: 'px-4 mx-1 py-2 w-16 rounded-md text-center focus:outline-none bg-transparent',
                             value: 1,
                             type: 'text',
                             name: `q:${product.barcode}`,
