@@ -1,4 +1,4 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+@vite(['resources/js/products/statusTime.js'])
 
 @extends('layout')
 
@@ -6,22 +6,24 @@
 
 @section('title', 'Productos')
 
-
 @section('content')
+
     @if (session('status'))
-        <div class="status">
-            {{ session('status') }}
-        </div>
+    <div id="statusMessage"
+        class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg border border-red-300">
+        {{ session('status') }}
+    </div>
     @endif
 
     <!--
-            <div class="flex items-center mb-">
-                <a href="{{ route('product.create') }}"
-                    class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">
-                    Crear Producto
-                </a>
-            </div>
-            -->
+        <div class="flex items-center mb-">
+            <a href="{{ route('product.create') }}"
+                class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">
+                Crear Producto
+            </a>
+        </div>
+     -->
+
     <div class="w-full m-4 p-6 bg-white rounded-lg shadow-md dark:bg-boxdark dark:text-white">
         <x-table.table :elements="$products" prefix="product" id="Codigo de barras" />
 

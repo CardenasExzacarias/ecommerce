@@ -1,8 +1,8 @@
-@vite(['resources/css/app.css', 'resources/js/products/statusTime.js'])
+@vite(['resources/js/products/statusTime.js'])
 
 @extends('layout')
 
-@section('name', route('product.index'))
+@section('search', route('product.index'))
 
 @section('title', 'Productos')
 
@@ -34,7 +34,7 @@
                 <label for="sell_price" class="block mb-2 text-sm font-medium text-gray-700 dark:text-white">Precio de
                     venta</label>
                 <input type="number" id="sell_price" name="sell_price"
-                    value="{{ old('sell_price', $product->sell_price) }}" required min="0" step="0.01"
+                    value="{{ old('sell_price', $product->sell_price) }}" required min="0"
                     class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-boxdark dark:text-white"
                     placeholder="Escribe el precio del producto" />
             </div>
@@ -43,7 +43,7 @@
                 <label for="buy_cost" class="block mb-2 text-sm font-medium text-gray-700 dark:text-white">Precio de
                     compra</label>
                 <input type="number" id="buy_cost" name="buy_cost" value="{{ old('buy_cost', $product->buy_cost) }}"
-                    required min="0" step="0.01"
+                    required min="0"
                     class="px-4 py-2 w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-boxdark dark:text-white"
                     placeholder="Escribe el precio del producto" />
             </div>
@@ -81,10 +81,17 @@
             @endif
 
             <div class="flex justify-end space-x-4">
-                <a href="{{ route('product.index') }}"
-                    class="px-4 py-2 font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">
-                    Cancelar
-                </a>
+                <a href="{{ url()->previous() }}"
+                    class="inline-flex items-center font-medium text-black dark:text-white hover:text-gray-400 transition-colors duration-300">
+                     <svg class="w-8 h-8 inline-block mr-2 text-black dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                          viewBox="0 0 24 24">
+                         <g data-name="arrow-back">
+                             <path
+                                 d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z">
+                             </path>
+                         </g>
+                     </svg>
+                 </a>
                 <button type="submit" class="px-4 py-2 font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600">
                     Actualizar Producto
                 </button>

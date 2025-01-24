@@ -10,7 +10,6 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
-    darkMode: 'class', // Habilitar el modo oscuro basado en clases
     theme: {
         fontFamily: {
             satoshi: ['Satoshi', 'sans-serif'],
@@ -25,6 +24,8 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+        },
+        extend: {
             colors: {
                 current: 'currentColor',
                 transparent: 'transparent',
