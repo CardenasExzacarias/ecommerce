@@ -10,12 +10,12 @@ const cart = document.getElementById('cart');
 
 export let searchedValue = '';
 
-const cartData = [];
-const cartList = new Struct();
+export const cartData = [];
+export const cartList = new Struct();
 
 export function updateCartData(product) {
     const existingProduct = cartData.find(item => item.product === product);
-
+    
     if (existingProduct) {
         existingProduct.quantity++;
         return existingProduct;
@@ -40,11 +40,10 @@ search.addEventListener('submit', (e) => {
 });
 
 export function manageSearch(res) {
-    console.log(res);
     const productElements = [];
     res.data.data.forEach(product => {
         productElements.push(
-            ProductListItem(product, cart, cartList)
+            ProductListItem(product, cart)
         );
     });
 

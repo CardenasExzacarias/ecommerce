@@ -9,10 +9,11 @@ export function PaginatorItems(links) {
 
     links.forEach(link => {
         let urlString = link.url;
-        console.log(urlString);
 
-        let position = urlString.indexOf('?');
-        urlString = urlString.slice(0, position + 1) + `?search=${searchedValue}` + urlString.slice(position + 1);
+        if (urlString) {
+            let position = urlString.indexOf('?');
+            urlString = urlString.slice(0, position + 1) + `search=${searchedValue}&` + urlString.slice(position + 1);
+        }
 
         items.push(
             Component('a', {
@@ -23,7 +24,7 @@ export function PaginatorItems(links) {
                     type: 'click',
                     handler: (e) => {
                         e.preventDefault();
-                        axios.get(link.url)
+                        axios.get(urlString)
                             .then(manageSearch)
                             .catch(error => {
                                 console.error(error);

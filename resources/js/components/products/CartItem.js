@@ -2,6 +2,7 @@ import { Component } from "../../Component";
 import { PlusCircleOutline } from "../icons/PlusCircleOutline";
 import { MinusCircleOutline } from "../icons/MinusCircleOutline";
 import { ButtonListItem } from "./ButtonListItem";
+import { updateCartData } from "../../tickets/create";
 
 export const CartItem = (product) => {
     return Component(
@@ -14,17 +15,17 @@ export const CartItem = (product) => {
             Component(
                 'div', { class: 'flex-1 px-4 flex items-center justify-between' },
                 [
-                    Component('div', {class: 'w-4/12'},
+                    Component('div', { class: 'w-4/12' },
                         Component('p', { class: 'font-semibold' }, product.barcode)
                     ),
-                    Component('div', {class: 'w-6/12'},
+                    Component('div', { class: 'w-6/12' },
                         Component(
                             'p',
                             { class: 'mx-4' },
                             product.name
                         )
                     ),
-                    Component('div', {class: 'w-2/12 flex justify-end mx-4'},
+                    Component('div', { class: 'w-2/12 flex justify-end mx-4' },
                         Component('p', {}, `$${product.sell_price}`)
                     ),
                 ]
@@ -50,6 +51,7 @@ export const CartItem = (product) => {
                     ButtonListItem(() => {
                         const input = document.getElementById(`q:${product.barcode}`);
                         let count = input.value;
+                        updateCartData(product.barcode);
                         input.value = parseInt(count) + 1;
                     }, PlusCircleOutline()),
                 ]
