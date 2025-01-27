@@ -1,11 +1,17 @@
 @vite(['resources/js/sidebar.js'])
 
 <aside id="sidebar"
-    class="absolute left-0 top-0 z-9999 flex h-screen flex-col overflow-y-hidden ease-linear bg-white rounded-lg shadow-md dark:bg-boxdark dark:text-white lg:static">
-    <div class="flex flex-col items-center px-4 py-5 border-b border-strokedark">
-        <img src="https://picsum.photos/400/800" alt="Logo de la tienda" class="w-24 h-24 mb-3 rounded-full">
+    class="absolute left-0 top-0 z-9999 flex h-screen flex-col overflow-y-hidden ease-linear bg-white rounded-lg shadow-md dark:bg-boxdark dark:text-white lg:static w-40 transition-all duration-10">
+
+    <div id="logo-container" class="flex flex-col items-center px-4 py-1">
+        <img id="logo" src="https://picsum.photos/400/800" alt="Logo de la tienda" class="w-24 h-24 rounded-full">
+    </div>
+
+    <div id="title-container" class="flex flex-col items-center px-4 py-1 border-b border-strokedark">
+        <!-- Aquí cambié py-5 a py-2 -->
         <h1 class="text-xl font-bold text-black dark:text-white tracking-wide">TIENDA</h1>
     </div>
+
 
     <div class="flex flex-col p-4 space-y-4">
         <div class="relative dropdown-container">
