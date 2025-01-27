@@ -7,11 +7,11 @@
 @section('title', 'Vender')
 
 @section('content')
-    <div class="w-1/2 m-4 overflow-y-scroll bg-white rounded-lg shadow-md dark:bg-boxdark" id="products"></div>
-    <div class="w-1/2 m-4 bg-white rounded-lg shadow-md dark:bg-boxdark" id="cart-container">
+    <div class="w-1/2 m-4 mr-2 overflow-y-scroll bg-white rounded-lg shadow-md dark:bg-boxdark" id="products"></div>
+    <div class="w-1/2 m-4 ml-2 bg-white rounded-lg shadow-md dark:bg-boxdark" id="cart-container">
         <form class="h-full relative" id="store" action="{{ route('ticket.store') }}" method="POST">
             @csrf
-            <div class="overflow-y-scroll" id='cart'></div>
+            <div class="overflow-y-scroll h-150" id='cart'></div>
             <div class="absolute bottom-0 w-full" id="store_container_submit">
                 <div class="flex justify-center w-full">
                     <button class="bg-primary text-white p-2 my-4 rounded" id="store_submit">

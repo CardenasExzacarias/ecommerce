@@ -1,14 +1,14 @@
-import { updateCartData } from "../../tickets/create";
+import { cartList, updateCartData } from "../../tickets/create";
 import { Component } from "../../Component";
 import { secure_url } from "../../utilities/secure_url";
 import { CartItem } from "./CartItem";
 
-export const ProductListItem = (product, cart, cartList) => {
+export const ProductListItem = (product, cart) => {
     return Component(
         'div',
         {
             class: 'grid grid-cols-2 gap-4 m-6',
-            id: product.id
+            id: product.barcode
         },
         [
             Component(
@@ -41,7 +41,7 @@ export const ProductListItem = (product, cart, cartList) => {
                                 event: {
                                     type: 'click',
                                     handler: () => {
-                                        const productAdded = updateCartData(product.id);
+                                        const productAdded = updateCartData(product.barcode);
 
                                         if (productAdded.quantity != 1) {
                                             const input = document.getElementById(`q:${product.barcode}`);

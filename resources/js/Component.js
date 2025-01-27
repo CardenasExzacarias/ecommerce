@@ -65,6 +65,7 @@ export class Struct {
     struct = [];
 
     render(parent) {
+        console.log(this.struct);
         parent.innerHTML = '';
         this.struct.forEach(element => {
             parent.appendChild(element);
