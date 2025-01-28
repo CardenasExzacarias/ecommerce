@@ -1,3 +1,5 @@
+/* Codigo para contraer la sidebar
+
 document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.getElementById('sidebar');
   const logoContainer = document.getElementById('logo-container'); // Contenedor del logo
@@ -47,6 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+Fin del codigo
+*/
   const dropdownButtons = document.querySelectorAll('.dropdown-button');
 
   dropdownButtons.forEach(button => {

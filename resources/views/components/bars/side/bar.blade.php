@@ -8,7 +8,6 @@
     </div>
 
     <div id="title-container" class="flex flex-col items-center px-4 py-1 border-b border-strokedark">
-        <!-- Aquí cambié py-5 a py-2 -->
         <h1 class="text-xl font-bold text-black dark:text-white tracking-wide">TIENDA</h1>
     </div>
 
