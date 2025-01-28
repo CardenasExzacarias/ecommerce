@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'index')->name('index');
-Route::post('/', 'attempt')->name('attempt');
-Route::get('identify', 'identify')->name('identify');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', 'index');
+    Route::post('/', 'attempt')->name('.attempt');
+    Route::get('identify', 'identify')->name('.identify');
+});
