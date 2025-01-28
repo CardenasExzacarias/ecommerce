@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -12,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
         then: function (){
             Route::prefix('kevin')->group(base_path('routes/kevin.php'));
+            Route::prefix('login')->name('login.')->controller(LoginController::class)->group(base_path('routes/login.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
