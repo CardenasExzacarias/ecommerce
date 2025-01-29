@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('edit', 'edit')
                 ->name('.edit');
 
-            Route::get('update', 'update')
+            Route::patch('update', 'update')
                 ->name('.update');
         });
 });
