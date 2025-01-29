@@ -1,17 +1,12 @@
 @vite(['resources/js/sidebar.js'])
 
-<aside id="sidebar"
-    class="absolute left-0 top-0 z-9999 flex h-screen flex-col overflow-y-hidden ease-linear bg-white rounded-lg shadow-md dark:bg-boxdark dark:text-white lg:static w-40 transition-all duration-10">
-
+<aside id="sidebar" class="h-screen bg-white dark:bg-boxdark dark:text-white">
     <div id="logo-container" class="flex flex-col items-center px-4 py-1">
         <img id="logo" src="https://picsum.photos/400/800" alt="Logo de la tienda" class="w-24 h-24 rounded-full">
     </div>
-
-    <div id="title-container" class="flex flex-col items-center px-4 py-1 border-b border-strokedark">
+    <div id="title-container" class="flex flex-col items-center px-4 py-1">
         <h1 class="text-xl font-bold text-black dark:text-white tracking-wide">TIENDA</h1>
     </div>
-
-
     <div class="flex flex-col p-4 space-y-4">
         <div class="relative dropdown-container">
             <button
@@ -34,7 +29,6 @@
                 </a>
             </div>
         </div>
-
         <div class="relative dropdown-container">
             <button
                 class="dropdown-button flex items-center justify-between w-full px-4 py-2 text-left rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
@@ -56,13 +50,11 @@
                 </a>
             </div>
         </div>
-
         <div class="mt-auto border-strokedark">
             <a href="{{ route('configuration.index') }}"
                 class="flex items-center justify-between w-full px-4 py-2 text-left rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                 Configuración
             </a>
         </div>
-
     </div>
 </aside>
