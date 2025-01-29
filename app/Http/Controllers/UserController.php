@@ -4,13 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ConfigurationController extends Controller
+class UserController extends Controller
 {
-    public function index()
-    {
-        return view('configuration.index');
-    }
-
     public function edit()
     {
         return view('configuration.edit');

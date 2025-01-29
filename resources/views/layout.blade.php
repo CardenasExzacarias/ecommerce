@@ -16,7 +16,7 @@
         ],
         [
             'title' => 'Configuración',
-            'options' => [['route' => route('edit'), 'name' => 'Editar usuario']],
+            'options' => [['route' => route('user.edit'), 'name' => 'Editar usuario']],
         ],
     ];
 @endphp
