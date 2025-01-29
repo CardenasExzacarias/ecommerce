@@ -11,6 +11,11 @@ class ConfigurationController extends Controller
         return view('configuration.index');
     }
 
+    public function edit()
+    {
+        return view('configuration.edit');
+    }
+
     public function update(Request $request)
     {
         // Lógica de actualización

@@ -21,8 +21,5 @@
                 </button>
             </div>
         </form>
-        <div class="text-end">
-            <a class="text-sm hover:text-primary" href="{{ route('login.identify') }}">Olvidé mi contraseña</a>
-        </div>
     </div>
 </div>

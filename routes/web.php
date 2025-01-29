@@ -25,5 +25,6 @@ Route::middleware(['auth'])->group(function () {
         ]
     ]);
 
-    Route::resource('configuration', ConfigurationController::class);
+    Route::get('edit', [ConfigurationController::class, 'edit'])
+        ->name('edit');
 });
