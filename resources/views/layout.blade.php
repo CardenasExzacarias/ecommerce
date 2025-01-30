@@ -31,8 +31,8 @@
     <title>@yield('title', 'Dashboard')</title>
 </head>
 
-<body class="bg-gray-100 dark:bg-boxdark-2 text-black dark:text-white h-full" id="container">
-    <div class="flex">
+<body class="bg-gray-100 dark:bg-boxdark-2 text-black dark:text-white h-screen" id="container">
+    <div class="flex h-full">
         <div class="w-2/12">
             <x-bars.side.bar title="Tienda" :dropdowns="$dropdowns" />
         </div>
