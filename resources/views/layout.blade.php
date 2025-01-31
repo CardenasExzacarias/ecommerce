@@ -34,7 +34,7 @@
 <body class="bg-gray-100 dark:bg-boxdark-2 text-black dark:text-white h-screen" id="container">
     <div class="flex h-full">
         <div class="w-2/12">
-            <x-bars.side.bar title="Tienda" :dropdowns="$dropdowns" />
+            <x-bars.side.bar :title="Auth::user()->name" :dropdowns="$dropdowns" />
         </div>
         <div class="w-10/12">
             <x-bars.top.bar />
