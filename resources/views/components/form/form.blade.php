@@ -1,7 +1,8 @@
 <div
     class="md:w-100 sm:w-80 p-4 rounded-md border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
     <div class="p-4">
-        <form action="{{ $action }}" method="{{ $method == 'GET' ? $method : 'POST' }}">
+        <form action="{{ $action }}" method="{{ $method == 'GET' ? $method : 'POST' }}"
+            enctype="{{ isset($enctype) ? $enctype : 'text/plain' }}">
             {{ $slot }}
             <x-form.submit>
                 Continuar

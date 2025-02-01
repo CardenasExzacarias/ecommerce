@@ -6,7 +6,10 @@ use App\Models\Product;
 use Exception;
 use Illuminate\Database\QueryException;
 use Carbon\Carbon;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 class ProductRepository
 {
     public static function all($name = null)
@@ -38,6 +41,14 @@ class ProductRepository
     public static function store($fields)
     {
         try {
+            $image = $fields['image'];
+
+            $image = Storage::putFile('img', $image);
+
+            $url = Storage::url($image);
+
+            $fields['image'] = $url;
+
             Product::create($fields);
         } catch (QueryException $e) {
             return 'No se pudo registrar';

@@ -11,7 +11,7 @@
         <div
             class="flex flex-col md:flex-row bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-4xl dark:bg-boxdark dark:text-white">
             <div class="w-full md:w-1/3 overflow-hidden">
-                <img src="https://aguacatec.es/wp-content/uploads/2023/10/e5a978b8-6772-4c85-a50e-15581af7d483.png"
+                <img src={{ $product->image }}
                     alt="Imagen de {{ $product->name }}"
                     class="object-cover w-full h-64 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-tr-none transition-transform duration-300 hover:scale-105">
             </div>
